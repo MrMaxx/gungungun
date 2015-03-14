@@ -1,0 +1,46 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "Arena",
+            "relationshipNameCapitalized": "Arena",
+            "relationshipFieldName": "arena",
+            "otherEntityName": "arena",
+            "relationshipType": "many-to-one",
+            "otherEntityNameCapitalized": "Arena",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "x",
+            "fieldType": "Integer",
+            "fieldNameCapitalized": "X",
+            "fieldNameUnderscored": "x"
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "y",
+            "fieldType": "Integer",
+            "fieldNameCapitalized": "Y",
+            "fieldNameUnderscored": "y"
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "groupId",
+            "fieldType": "Integer",
+            "fieldNameCapitalized": "GroupId",
+            "fieldNameUnderscored": "group_id"
+        }
+    ],
+    "fieldsContainOwnerManyToMany": false,
+    "fieldsContainOneToMany": false,
+    "fieldsContainLocalDate": false,
+    "fieldsContainCustomTime": false,
+    "fieldsContainBigDecimal": false,
+    "fieldsContainDateTime": false,
+    "fieldsContainDate": false,
+    "changelogDate": "20150311092820",
+    "pagination": "pager"
+}

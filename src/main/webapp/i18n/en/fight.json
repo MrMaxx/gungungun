@@ -1,0 +1,22 @@
+{
+    "gungungunApp": {
+        "fight" : {
+            "home": {
+                "title": "Fights",
+                "createLabel": "Create a new Fight",
+                "createOrEditLabel": "Create or edit a Fight"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Fight {{ id }}?"
+            },
+            "detail": {
+                "title": "Fight"
+            },
+            "createdAt": "CreatedAt",
+            "processedAt": "ProcessedAt",
+            "resultingEvents": "ResultingEvents",
+            "participatingParty": "participatingParty",
+            "arena": "arena"
+        }
+    }
+}

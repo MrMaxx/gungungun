@@ -1,0 +1,19 @@
+{
+  "generator-jhipster": {
+    "baseName": "gungungun",
+    "packageName": "de.overwatch.gungungun",
+    "packageFolder": "de/overwatch/gungungun",
+    "authenticationType": "xauth",
+    "hibernateCache": "ehcache",
+    "clusteredHttpSession": "no",
+    "websocket": "spring-websocket",
+    "databaseType": "sql",
+    "devDatabaseType": "h2Memory",
+    "prodDatabaseType": "mysql",
+    "useCompass": false,
+    "buildTool": "maven",
+    "frontendBuilder": "grunt",
+    "javaVersion": "7",
+    "rememberMeKey": "202d74bc9c1e095b7141c89baab5501457e02242"
+  }
+}

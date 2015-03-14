@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <property name="now" value="now()" dbms="mysql,h2"/>
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+
+    <!--
+        Added the entity TokenBlueprint.
+    -->
+    <changeSet id="20150310093813" author="jhipster">
+        <createTable tableName="T_TOKENBLUEPRINT">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="token_key" type="varchar(255)"/>
+            <column name="health" type="integer"/>
+            <column name="actions_per_turn" type="integer"/>
+            <column name="long_range_attack_range" type="integer"/>
+            <column name="long_range_weapon_damage_minimum" type="integer"/>
+            <column name="long_range_weapon_damage_maximum" type="integer"/>
+            <column name="short_range_attack_range" type="integer"/>
+            <column name="short_range_weapon_damage_minimum" type="integer"/>
+            <column name="short_range_weapon_damage_maximum" type="integer"/>
+            <column name="move_range" type="integer"/>
+        </createTable>
+
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/tokenBlueprint.csv"
+                  separator=";"
+                  tableName="T_TOKENBLUEPRINT"/>
+    </changeSet>
+</databaseChangeLog>

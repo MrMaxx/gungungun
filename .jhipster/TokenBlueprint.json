@@ -1,0 +1,84 @@
+{
+    "relationships": [],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "tokenKey",
+            "fieldType": "String",
+            "fieldNameCapitalized": "TokenKey",
+            "fieldNameUnderscored": "token_key"
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "health",
+            "fieldType": "Integer",
+            "fieldNameCapitalized": "Health",
+            "fieldNameUnderscored": "health"
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "actionsPerTurn",
+            "fieldType": "Integer",
+            "fieldNameCapitalized": "ActionsPerTurn",
+            "fieldNameUnderscored": "actions_per_turn"
+        },
+        {
+            "fieldId": 4,
+            "fieldName": "longRangeAttackRange",
+            "fieldType": "Integer",
+            "fieldNameCapitalized": "LongRangeAttackRange",
+            "fieldNameUnderscored": "long_range_attack_range"
+        },
+        {
+            "fieldId": 5,
+            "fieldName": "longRangeWeaponDamageMinimum",
+            "fieldType": "Integer",
+            "fieldNameCapitalized": "LongRangeWeaponDamageMinimum",
+            "fieldNameUnderscored": "long_range_weapon_damage_minimum"
+        },
+        {
+            "fieldId": 6,
+            "fieldName": "longRangeWeaponDamageMaximum",
+            "fieldType": "Integer",
+            "fieldNameCapitalized": "LongRangeWeaponDamageMaximum",
+            "fieldNameUnderscored": "long_range_weapon_damage_maximum"
+        },
+        {
+            "fieldId": 7,
+            "fieldName": "shortRangeAttackRange",
+            "fieldType": "Integer",
+            "fieldNameCapitalized": "ShortRangeAttackRange",
+            "fieldNameUnderscored": "short_range_attack_range"
+        },
+        {
+            "fieldId": 8,
+            "fieldName": "shortRangeWeaponDamageMinimum",
+            "fieldType": "Integer",
+            "fieldNameCapitalized": "ShortRangeWeaponDamageMinimum",
+            "fieldNameUnderscored": "short_range_weapon_damage_minimum"
+        },
+        {
+            "fieldId": 9,
+            "fieldName": "shortRangeWeaponDamageMaximum",
+            "fieldType": "Integer",
+            "fieldNameCapitalized": "ShortRangeWeaponDamageMaximum",
+            "fieldNameUnderscored": "short_range_weapon_damage_maximum"
+        },
+        {
+            "fieldId": 10,
+            "fieldName": "moveRange",
+            "fieldType": "Integer",
+            "fieldNameCapitalized": "MoveRange",
+            "fieldNameUnderscored": "move_range"
+        }
+    ],
+    "fieldsContainOwnerManyToMany": false,
+    "fieldsContainOneToMany": false,
+    "fieldsContainLocalDate": false,
+    "fieldsContainCustomTime": false,
+    "fieldsContainBigDecimal": false,
+    "fieldsContainDateTime": false,
+    "fieldsContainDate": false,
+    "changelogDate": "20150310093813",
+    "pagination": "no"
+}

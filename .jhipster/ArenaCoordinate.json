@@ -1,0 +1,53 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "Arena",
+            "relationshipNameCapitalized": "Arena",
+            "relationshipFieldName": "arena",
+            "otherEntityName": "arena",
+            "relationshipType": "many-to-one",
+            "otherEntityNameCapitalized": "Arena",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "transparent",
+            "fieldType": "Boolean",
+            "fieldNameCapitalized": "Transparent",
+            "fieldNameUnderscored": "transparent"
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "permeable",
+            "fieldType": "Boolean",
+            "fieldNameCapitalized": "Permeable",
+            "fieldNameUnderscored": "permeable"
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "x",
+            "fieldType": "Integer",
+            "fieldNameCapitalized": "X",
+            "fieldNameUnderscored": "x"
+        },
+        {
+            "fieldId": 4,
+            "fieldName": "y",
+            "fieldType": "Integer",
+            "fieldNameCapitalized": "Y",
+            "fieldNameUnderscored": "y"
+        }
+    ],
+    "fieldsContainOwnerManyToMany": false,
+    "fieldsContainOneToMany": false,
+    "fieldsContainLocalDate": false,
+    "fieldsContainCustomTime": false,
+    "fieldsContainBigDecimal": false,
+    "fieldsContainDateTime": false,
+    "fieldsContainDate": false,
+    "changelogDate": "20150310102912",
+    "pagination": "no"
+}

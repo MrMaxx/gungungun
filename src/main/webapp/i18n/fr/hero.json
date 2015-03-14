@@ -1,0 +1,21 @@
+{
+    "gungungunApp": {
+        "hero" : {
+            "home": {
+                "title": "Heros",
+                "createLabel": "Créer un nouveau Hero",
+                "createOrEditLabel": "Créer ou éditer un Hero"
+            },
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Hero {{ id }} ?"
+            },
+            "detail": {
+                "title": "Hero"
+            },
+            "name": "Name",
+            "party": "party",
+            "TokenBlueprint": "TokenBlueprint"
+        }
+    }
+}
+

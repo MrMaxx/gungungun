@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <property name="now" value="now()" dbms="mysql,h2"/>
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+
+    <!--
+        Added the entity Fight.
+    -->
+    <changeSet id="20150310120216" author="jhipster">
+        <createTable tableName="T_FIGHT">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamp">
+                <constraints nullable="false" />
+            </column>
+            <column name="processed_at" type="timestamp">
+                <constraints nullable="true" />
+            </column>
+            <column name="resulting_events" type="text"/>
+            <column name="arena_id" type="bigint"/>
+        </createTable>
+        <dropDefaultValue tableName="T_FIGHT" columnName="created_at" columnDataType="datetime"/>
+
+        <dropDefaultValue tableName="T_FIGHT" columnName="processed_at" columnDataType="datetime"/>
+
+        
+        <createTable tableName="T_FIGHT_PARTICIPATINGPARTY">
+            <column name="participatingPartys_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Fights_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="participatingPartys_id, Fights_id" tableName="T_FIGHT_PARTICIPATINGPARTY"/>
+
+        <addForeignKeyConstraint baseColumnNames="Fights_id"
+                                 baseTableName="T_FIGHT_PARTICIPATINGPARTY"
+				 constraintName="fk_fight_participatingparty_party_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="T_FIGHT"/>
+
+        <addForeignKeyConstraint baseColumnNames="participatingPartys_id"
+                                 baseTableName="T_FIGHT_PARTICIPATINGPARTY"
+                                 constraintName="fk_party_participatingparty_fight_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="T_PARTY"/>
+        
+        <addForeignKeyConstraint baseColumnNames="arena_id"
+                                 baseTableName="T_FIGHT"
+                                 constraintName="fk_fight_arena_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="T_ARENA"/>
+
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/fight.csv"
+                  separator=";"
+                  tableName="T_FIGHT"/>
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/fight_participating_parties.csv"
+                  separator=";"
+                  tableName="T_FIGHT_PARTICIPATINGPARTY"/>
+
+    </changeSet>
+</databaseChangeLog>

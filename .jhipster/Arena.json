@@ -1,0 +1,40 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "ArenaCoordinate",
+            "relationshipNameCapitalized": "ArenaCoordinate",
+            "relationshipFieldName": "arenaCoordinate",
+            "otherEntityName": "arenaCoordinate",
+            "relationshipType": "one-to-many",
+            "otherEntityNameCapitalized": "ArenaCoordinate"
+        },
+        {
+            "relationshipId": 2,
+            "relationshipName": "SpawnPoint",
+            "relationshipNameCapitalized": "SpawnPoint",
+            "relationshipFieldName": "spawnPoint",
+            "otherEntityName": "spawnPoint",
+            "relationshipType": "one-to-many",
+            "otherEntityNameCapitalized": "SpawnPoint"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "arenaKey",
+            "fieldType": "String",
+            "fieldNameCapitalized": "ArenaKey",
+            "fieldNameUnderscored": "arena_key"
+        }
+    ],
+    "fieldsContainOwnerManyToMany": false,
+    "fieldsContainOneToMany": true,
+    "fieldsContainLocalDate": false,
+    "fieldsContainCustomTime": false,
+    "fieldsContainBigDecimal": false,
+    "fieldsContainDateTime": false,
+    "fieldsContainDate": false,
+    "changelogDate": "20150310103114",
+    "pagination": "no"
+}

@@ -1,0 +1,28 @@
+{
+    "gungungunApp": {
+        "tokenBlueprint" : {
+            "home": {
+                "title": "TokenBlueprints",
+                "createLabel": "Créer un nouveau TokenBlueprint",
+                "createOrEditLabel": "Créer ou éditer un TokenBlueprint"
+            },
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le TokenBlueprint {{ id }} ?"
+            },
+            "detail": {
+                "title": "TokenBlueprint"
+            },
+            "tokenKey": "TokenKey",
+            "health": "Health",
+            "actionsPerTurn": "ActionsPerTurn",
+            "longRangeAttackRange": "LongRangeAttackRange",
+            "longRangeWeaponDamageMinimum": "LongRangeWeaponDamageMinimum",
+            "longRangeWeaponDamageMaximum": "LongRangeWeaponDamageMaximum",
+            "shortRangeAttackRange": "ShortRangeAttackRange",
+            "shortRangeWeaponDamageMinimum": "ShortRangeWeaponDamageMinimum",
+            "shortRangeWeaponDamageMaximum": "ShortRangeWeaponDamageMaximum",
+            "moveRange": "MoveRange"
+        }
+    }
+}
+

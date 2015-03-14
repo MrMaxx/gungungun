@@ -1,0 +1,137 @@
+<div>
+
+    <h2 translate="gungungunApp.spawnPoint.home.title">SpawnPoint</h2>
+
+    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#saveSpawnPointModal" ng-click="clear()">
+        <span class="glyphicon glyphicon-flash"></span> <span translate="gungungunApp.spawnPoint.home.createLabel">Create a new SpawnPoint</span>
+    </button>
+    <div class="modal fade" id="saveSpawnPointModal" tabindex="-1" role="dialog" aria-labelledby="mySpawnPointLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form name="editForm" role="form" novalidate
+                      class="ng-scope ng-invalid ng-invalid-required ng-dirty ng-valid-minlength"
+                      ng-submit="create()">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                                ng-click="clear()">&times;</button>
+                        <h4 class="modal-title" id="mySpawnPointLabel" translate="gungungunApp.spawnPoint.home.createOrEditLabel">Create or edit a SpawnPoint</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>ID</label>
+                            <input type="text" class="form-control" name="id"
+                                   ng-model="spawnPoint.id" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label translate="gungungunApp.spawnPoint.x">X</label>
+                            <input type="number" class="form-control" name="x"
+                                   ng-model="spawnPoint.x">
+                        </div>
+                        <div class="form-group">
+                            <label translate="gungungunApp.spawnPoint.y">Y</label>
+                            <input type="number" class="form-control" name="y"
+                                   ng-model="spawnPoint.y">
+                        </div>
+                        <div class="form-group">
+                            <label translate="gungungunApp.spawnPoint.groupId">GroupId</label>
+                            <input type="number" class="form-control" name="groupId"
+                                   ng-model="spawnPoint.groupId">
+                        </div>
+
+                        <div class="form-group">
+                            <label translate="gungungunApp.spawnPoint.Arena">Arena</label>
+                            <select class="form-control" name="Arena" ng-model="spawnPoint.arena.id" ng-options="arena.id as arena.id for arena in arenas">
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+                            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+                        </button>
+                        <button type="submit" ng-disabled="editForm.$invalid" class="btn btn-primary">
+                            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="deleteSpawnPointConfirmation">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form name="deleteForm" ng-submit="confirmDelete(spawnPoint.id)">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                                ng-click="clear()">&times;</button>
+                        <h4 class="modal-title" translate="entity.delete.title">Confirm delete operation</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p translate="gungungunApp.spawnPoint.delete.question" translate-values="{id: '{{spawnPoint.id}}'}">Are you sure you want to delete this SpawnPoint?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+                            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+                        </button>
+                        <button type="submit" ng-disabled="deleteForm.$invalid" class="btn btn-danger">
+                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th translate="gungungunApp.spawnPoint.x">X</th>
+                    <th translate="gungungunApp.spawnPoint.y">Y</th>
+                    <th translate="gungungunApp.spawnPoint.groupId">GroupId</th>
+                    <th translate="gungungunApp.spawnPoint.Arena">Arena</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="spawnPoint in spawnPoints">
+                    <td><a ui-sref="spawnPointDetail({id:spawnPoint.id})">{{spawnPoint.id}}</a></td>
+                    <td>{{spawnPoint.x}}</td>
+                    <td>{{spawnPoint.y}}</td>
+                    <td>{{spawnPoint.groupId}}</td>
+                    <td>{{spawnPoint.Arena.id}}</td>
+                    <td>
+                        <button type="submit"
+                                ui-sref="spawnPointDetail({id:spawnPoint.id})"
+                                class="btn btn-info">
+                            <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span translate="entity.action.view"> View</span>
+                        </button>
+                        <button type="submit"
+                                ng-click="update(spawnPoint.id)"
+                                class="btn btn-primary">
+                            <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span translate="entity.action.edit"> Edit</span>
+                        </button>
+                        <button type="submit"
+                                ng-click="delete(spawnPoint.id)"
+                                class="btn btn-danger">
+                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete"> Delete</span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <nav>
+            <ul class="pager">
+                <li ng-show="links['first']" ng-click="loadPage(links['first'])"><a href="#">&lt;&lt;</a></li>
+                <li ng-show="links['prev']" ng-click="loadPage(links['prev'])"><a href="#">&lt;</a></li>
+                <li ng-show="links['next']" ng-click="loadPage(links['next'])"><a href="#">&gt;</a></li>
+                <li ng-show="links['last']" ng-click="loadPage(links['last'])"><a href="#">&gt;&gt;</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>

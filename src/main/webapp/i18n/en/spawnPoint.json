@@ -1,0 +1,21 @@
+{
+    "gungungunApp": {
+        "spawnPoint" : {
+            "home": {
+                "title": "SpawnPoints",
+                "createLabel": "Create a new SpawnPoint",
+                "createOrEditLabel": "Create or edit a SpawnPoint"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete SpawnPoint {{ id }}?"
+            },
+            "detail": {
+                "title": "SpawnPoint"
+            },
+            "x": "X",
+            "y": "Y",
+            "groupId": "GroupId",
+            "Arena": "Arena"
+        }
+    }
+}

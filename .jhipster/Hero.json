@@ -1,0 +1,42 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "party",
+            "relationshipNameCapitalized": "Party",
+            "relationshipFieldName": "party",
+            "otherEntityName": "party",
+            "relationshipType": "many-to-one",
+            "otherEntityNameCapitalized": "Party",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipId": 2,
+            "relationshipName": "TokenBlueprint",
+            "relationshipNameCapitalized": "TokenBlueprint",
+            "relationshipFieldName": "tokenBlueprint",
+            "otherEntityName": "tokenBlueprint",
+            "relationshipType": "many-to-one",
+            "otherEntityNameCapitalized": "TokenBlueprint",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldNameCapitalized": "Name",
+            "fieldNameUnderscored": "name"
+        }
+    ],
+    "fieldsContainOwnerManyToMany": false,
+    "fieldsContainOneToMany": false,
+    "fieldsContainLocalDate": false,
+    "fieldsContainCustomTime": false,
+    "fieldsContainBigDecimal": false,
+    "fieldsContainDateTime": false,
+    "fieldsContainDate": false,
+    "changelogDate": "20150310101951",
+    "pagination": "no"
+}

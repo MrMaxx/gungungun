@@ -1,0 +1,2 @@
+id;token_key;health;actions_per_turn;long_range_attack_range;long_range_weapon_damage_minimum;long_range_weapon_damage_maximum;short_range_attack_range;short_range_weapon_damage_minimum;short_range_weapon_damage_maximum;move_range
+1;GRUNT;100;4;10;5;10;1;10;25;2

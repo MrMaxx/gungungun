@@ -1,0 +1,22 @@
+{
+    "gungungunApp": {
+        "arenaCoordinate" : {
+            "home": {
+                "title": "ArenaCoordinates",
+                "createLabel": "Create a new ArenaCoordinate",
+                "createOrEditLabel": "Create or edit a ArenaCoordinate"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete ArenaCoordinate {{ id }}?"
+            },
+            "detail": {
+                "title": "ArenaCoordinate"
+            },
+            "transparent": "Transparent",
+            "permeable": "Permeable",
+            "x": "X",
+            "y": "Y",
+            "Arena": "Arena"
+        }
+    }
+}

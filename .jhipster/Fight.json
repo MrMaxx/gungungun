@@ -1,0 +1,58 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "participatingParty",
+            "relationshipNameCapitalized": "ParticipatingParty",
+            "relationshipFieldName": "participatingParty",
+            "otherEntityName": "party",
+            "relationshipType": "many-to-many",
+            "otherEntityNameCapitalized": "Party",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipId": 2,
+            "relationshipName": "arena",
+            "relationshipNameCapitalized": "Arena",
+            "relationshipFieldName": "arena",
+            "otherEntityName": "arena",
+            "relationshipType": "many-to-one",
+            "otherEntityNameCapitalized": "Arena",
+            "otherEntityField": "id",
+            "ownerSide": true
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "createdAt",
+            "fieldType": "DateTime",
+            "fieldNameCapitalized": "CreatedAt",
+            "fieldNameUnderscored": "created_at"
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "processedAt",
+            "fieldType": "DateTime",
+            "fieldNameCapitalized": "ProcessedAt",
+            "fieldNameUnderscored": "processed_at"
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "resultingEvents",
+            "fieldType": "String",
+            "fieldNameCapitalized": "ResultingEvents",
+            "fieldNameUnderscored": "resulting_events"
+        }
+    ],
+    "fieldsContainOwnerManyToMany": true,
+    "fieldsContainOneToMany": false,
+    "fieldsContainLocalDate": false,
+    "fieldsContainCustomTime": true,
+    "fieldsContainBigDecimal": false,
+    "fieldsContainDateTime": true,
+    "fieldsContainDate": false,
+    "changelogDate": "20150310120216",
+    "pagination": "pager"
+}
