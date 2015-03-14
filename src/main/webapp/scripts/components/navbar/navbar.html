@@ -7,7 +7,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#"><span translate="global.title">jhipster</span> <span class="navbar-version">v{{VERSION}}</span></a>
+            <a class="navbar-brand" href="#"><span translate="global.title">gungungun</span> <span class="navbar-version">v{{VERSION}}</span></a>
         </div>
         <div class="collapse navbar-collapse" id="navbar-collapse" ng-switch="isAuthenticated()">
             <ul class="nav navbar-nav nav-pills navbar-right">
@@ -17,6 +17,16 @@
                         <span translate="global.menu.home">Home</span>
                     </a>
                 </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="game">
+                        <span class="glyphicon glyphicon-tower"></span>
+                        <span translate="global.menu.game">Game</span>
+                    </a>
+                </li>
+
+
+
+
                 <li ui-sref-active="active" ng-switch-when="true" class="dropdown pointer">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="">
                                 <span>
@@ -96,7 +106,7 @@
                             &#xA0;<span translate="global.menu.admin.database">Database</span></a></li>
                     </ul>
                 </li>
-                <li ui-sref-active="active" class="dropdown pointer" ng-controller="LanguageController">
+                <!-- li ui-sref-active="active" class="dropdown pointer" ng-controller="LanguageController">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="">
                                 <span>
                                     <span class="glyphicon glyphicon-flag"></span>
@@ -109,7 +119,7 @@
                             <a href="" ng-click="changeLanguage(language)">{{'language.' + language| translate}}</a>
                         </li>
                     </ul>
-                </li>
+                </li -->
             </ul>
         </div>
     </div>

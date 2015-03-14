@@ -1,9 +1,10 @@
 {
     "global": {
-        "title": "gungungun",
+        "title": "GunGunGun",
         "browsehappy": "You are using an <strong>outdated</strong> browser. Please <a href=\"http://browsehappy.com/?locale=en\">upgrade your browser</a> to improve your experience.",
         "menu": {
             "home": "Home",
+            "game": "Game",
             "entities": {
                 "main": "Entities",
                 "tokenBlueprint": "TokenBlueprint",
@@ -93,5 +94,5 @@
             "title": "Confirm delete operation"
         }
     },
-    "footer": "This is your footer"
+    "footer": "GunGunGun is an entry for the Web Game Dev Challenge on <a href=\"http://webgamers.de\" >WebGamers</a>"
 }
