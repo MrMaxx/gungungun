@@ -15,6 +15,7 @@ public abstract class GameEvent {
         SHOOT,
         ATTACK,
         TOKEN_DIED,
+        TOKEN_SPAWNED,
         TURN_TO,
         GAME_ENDED,
         ROUND_ENDED

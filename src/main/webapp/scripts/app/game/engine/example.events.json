@@ -1,0 +1,369 @@
+[
+    {
+        "elementId": 1,
+        "actionsLeft": 4,
+        "health": 100,
+        "direction": "NORTH",
+        "name": "Hannibal",
+        "tokenBlueprintId": 1,
+        "tokenKey": "GRUNT",
+        "coordinate": {
+            "x": 2,
+            "y": 7
+        },
+        "type": "TOKEN_SPAWNED"
+    },
+    {
+        "elementId": 2,
+        "actionsLeft": 4,
+        "health": 100,
+        "direction": "NORTH",
+        "name": "Hercules",
+        "tokenBlueprintId": 1,
+        "tokenKey": "GRUNT",
+        "coordinate": {
+            "x": 22,
+            "y": 7
+        },
+        "type": "TOKEN_SPAWNED"
+    },
+    {
+        "elementId": 1,
+        "coordinate": {
+            "x": 2,
+            "y": 6
+        },
+        "type": "MOVE_TO"
+    },
+    {
+        "elementId": 1,
+        "direction": "NORTH",
+        "type": "TURN_TO"
+    },
+    {
+        "elementId": 1,
+        "coordinate": {
+            "x": 2,
+            "y": 5
+        },
+        "type": "MOVE_TO"
+    },
+    {
+        "elementId": 1,
+        "coordinate": {
+            "x": 2,
+            "y": 4
+        },
+        "type": "MOVE_TO"
+    },
+    {
+        "elementId": 2,
+        "coordinate": {
+            "x": 21,
+            "y": 6
+        },
+        "type": "MOVE_TO"
+    },
+    {
+        "elementId": 2,
+        "direction": "NORTH",
+        "type": "TURN_TO"
+    },
+    {
+        "elementId": 2,
+        "coordinate": {
+            "x": 20,
+            "y": 5
+        },
+        "type": "MOVE_TO"
+    },
+    {
+        "elementId": 2,
+        "coordinate": {
+            "x": 19,
+            "y": 4
+        },
+        "type": "MOVE_TO"
+    },
+    {
+        "round": 1,
+        "type": "ROUND_ENDED"
+    },
+    {
+        "elementId": 1,
+        "coordinate": {
+            "x": 2,
+            "y": 3
+        },
+        "type": "MOVE_TO"
+    },
+    {
+        "elementId": 1,
+        "direction": "NORTH",
+        "type": "TURN_TO"
+    },
+    {
+        "elementId": 1,
+        "coordinate": {
+            "x": 2,
+            "y": 2
+        },
+        "type": "MOVE_TO"
+    },
+    {
+        "elementId": 2,
+        "coordinate": {
+            "x": 18,
+            "y": 3
+        },
+        "type": "MOVE_TO"
+    },
+    {
+        "elementId": 2,
+        "direction": "NORTH",
+        "type": "TURN_TO"
+    },
+    {
+        "elementId": 2,
+        "coordinate": {
+            "x": 17,
+            "y": 2
+        },
+        "type": "MOVE_TO"
+    },
+    {
+        "round": 2,
+        "type": "ROUND_ENDED"
+    },
+    {
+        "elementId": 1,
+        "direction": "SOUTH",
+        "type": "TURN_TO"
+    },
+    {
+        "elementId": 1,
+        "coordinate": {
+            "x": 2,
+            "y": 3
+        },
+        "type": "MOVE_TO"
+    },
+    {
+        "elementId": 1,
+        "direction": "NORTH",
+        "type": "TURN_TO"
+    },
+    {
+        "elementId": 1,
+        "coordinate": {
+            "x": 2,
+            "y": 2
+        },
+        "type": "MOVE_TO"
+    },
+    {
+        "elementId": 2,
+        "direction": "WEST",
+        "type": "TURN_TO"
+    },
+    {
+        "elementId": 2,
+        "coordinate": {
+            "x": 16,
+            "y": 2
+        },
+        "type": "MOVE_TO"
+    },
+    {
+        "elementId": 2,
+        "direction": "WEST",
+        "type": "TURN_TO"
+    },
+    {
+        "elementId": 2,
+        "coordinate": {
+            "x": 15,
+            "y": 2
+        },
+        "type": "MOVE_TO"
+    },
+    {
+        "round": 3,
+        "type": "ROUND_ENDED"
+    },
+    {
+        "elementId": 1,
+        "direction": "SOUTH",
+        "type": "TURN_TO"
+    },
+    {
+        "elementId": 1,
+        "coordinate": {
+            "x": 2,
+            "y": 3
+        },
+        "type": "MOVE_TO"
+    },
+    {
+        "elementId": 1,
+        "direction": "NORTH",
+        "type": "TURN_TO"
+    },
+    {
+        "elementId": 1,
+        "coordinate": {
+            "x": 2,
+            "y": 2
+        },
+        "type": "MOVE_TO"
+    },
+    {
+        "elementId": 2,
+        "coordinate": {
+            "x": 14,
+            "y": 2
+        },
+        "type": "MOVE_TO"
+    },
+    {
+        "elementId": 2,
+        "direction": "WEST",
+        "type": "TURN_TO"
+    },
+    {
+        "elementId": 2,
+        "coordinate": {
+            "x": 13,
+            "y": 2
+        },
+        "type": "MOVE_TO"
+    },
+    {
+        "elementId": 2,
+        "coordinate": {
+            "x": 12,
+            "y": 2
+        },
+        "type": "MOVE_TO"
+    },
+    {
+        "round": 4,
+        "type": "ROUND_ENDED"
+    },
+    {
+        "elementId": 1,
+        "direction": "EAST",
+        "type": "TURN_TO"
+    },
+    {
+        "elementId": 1,
+        "targetId": 2,
+        "damage": 11,
+        "type": "SHOOT"
+    },
+    {
+        "elementId": 1,
+        "targetId": 2,
+        "damage": 11,
+        "type": "SHOOT"
+    },
+    {
+        "elementId": 1,
+        "targetId": 2,
+        "damage": 12,
+        "type": "SHOOT"
+    },
+    {
+        "elementId": 2,
+        "targetId": 1,
+        "damage": 10,
+        "type": "SHOOT"
+    },
+    {
+        "elementId": 2,
+        "targetId": 1,
+        "damage": 11,
+        "type": "SHOOT"
+    },
+    {
+        "elementId": 2,
+        "targetId": 1,
+        "damage": 10,
+        "type": "SHOOT"
+    },
+    {
+        "elementId": 2,
+        "targetId": 1,
+        "damage": 13,
+        "type": "SHOOT"
+    },
+    {
+        "round": 5,
+        "type": "ROUND_ENDED"
+    },
+    {
+        "elementId": 1,
+        "targetId": 2,
+        "damage": 14,
+        "type": "SHOOT"
+    },
+    {
+        "elementId": 1,
+        "targetId": 2,
+        "damage": 12,
+        "type": "SHOOT"
+    },
+    {
+        "elementId": 1,
+        "targetId": 2,
+        "damage": 13,
+        "type": "SHOOT"
+    },
+    {
+        "elementId": 1,
+        "targetId": 2,
+        "damage": 14,
+        "type": "SHOOT"
+    },
+    {
+        "elementId": 2,
+        "targetId": 1,
+        "damage": 12,
+        "type": "SHOOT"
+    },
+    {
+        "elementId": 2,
+        "targetId": 1,
+        "damage": 10,
+        "type": "SHOOT"
+    },
+    {
+        "elementId": 2,
+        "targetId": 1,
+        "damage": 10,
+        "type": "SHOOT"
+    },
+    {
+        "elementId": 2,
+        "targetId": 1,
+        "damage": 10,
+        "type": "SHOOT"
+    },
+    {
+        "round": 6,
+        "type": "ROUND_ENDED"
+    },
+    {
+        "elementId": 1,
+        "targetId": 2,
+        "damage": 14,
+        "type": "SHOOT"
+    },
+    {
+        "elementId": 2,
+        "type": "TOKEN_DIED"
+    },
+    {
+        "type": "GAME_ENDED"
+    }
+]

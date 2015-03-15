@@ -5,6 +5,7 @@ import de.overwatch.gungungun.game.execute.GameMoveExecutor;
 import de.overwatch.gungungun.game.gameevent.GameEndedEvent;
 import de.overwatch.gungungun.game.gameevent.GameEvent;
 import de.overwatch.gungungun.game.gameevent.RoundEndedEvent;
+import de.overwatch.gungungun.game.gameevent.TokenSpawnedEvent;
 import de.overwatch.gungungun.game.gamemove.*;
 import de.overwatch.gungungun.game.model.HeroToken;
 import org.slf4j.Logger;
@@ -37,6 +38,10 @@ public class GameEngine {
     public List<GameEvent> calculateGame(GameState gameState){
 
         List<GameEvent> gameEvents = new LinkedList<>();
+
+        for(HeroToken token: gameState.getHeroes()){
+            gameEvents.add(new TokenSpawnedEvent(token));
+        }
 
         // we need some termination
         while(gameState.getRound() < 1000){

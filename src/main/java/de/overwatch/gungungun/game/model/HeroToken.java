@@ -10,6 +10,7 @@ public class HeroToken {
     private String name;
     private Long partyId;
     private String tokenKey;
+    private Long tokenBlueprintId;
     private Integer health;
     private Integer actionsPerTurn;
     private Integer longRangeAttackRange;
@@ -29,6 +30,7 @@ public class HeroToken {
         this.name = hero.getName();
         this.partyId = hero.getParty().getId();
         this.tokenKey = hero.getTokenBlueprint().getTokenKey();
+        this.tokenBlueprintId = hero.getTokenBlueprint().getId();
         this.health = hero.getTokenBlueprint().getHealth();
         this.actionsPerTurn = hero.getTokenBlueprint().getActionsPerTurn();
         this.longRangeAttackRange = hero.getTokenBlueprint().getLongRangeAttackRange();
@@ -130,5 +132,9 @@ public class HeroToken {
 
     public Coordinate getCoordinate() {
         return coordinate;
+    }
+
+    public Long getTokenBlueprintId() {
+        return tokenBlueprintId;
     }
 }

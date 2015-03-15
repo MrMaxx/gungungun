@@ -94,5 +94,6 @@
             "title": "Confirm delete operation"
         }
     },
+    "footer_imprint": "Imprint",
     "footer": "GunGunGun is an entry for the Web Game Dev Challenge on <a href=\"http://webgamers.de\" >WebGamers</a>"
 }

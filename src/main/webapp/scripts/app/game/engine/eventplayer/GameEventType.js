@@ -1,0 +1,12 @@
+var GameEventType = {
+
+    MOVE_TO: "MOVE_TO",
+    SHOOT: "SHOOT",
+    ATTACK: "ATTACK",
+    TURN_TO: "TURN_TO",
+    ROUND_ENDED: "ROUND_ENDED",
+    TOKEN_DIED: "TOKEN_DIED",
+    TOKEN_SPAWNED: "TOKEN_SPAWNED",
+    GAME_ENDED: "GAME_ENDED"
+
+}

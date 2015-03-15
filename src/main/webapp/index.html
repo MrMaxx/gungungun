@@ -29,7 +29,9 @@
             <div class="well" ui-view="content"></div>
 
             <div class="footer">
-                <p translate="footer">GunGunGun is an entry for the Web Game Dev Challenge on <a href="http://webgamers.de" >WebGamers</a></p>
+                <p translate="footer" style="float:left;">GunGunGun is an entry for the Web Game Dev Challenge on <a href="http://webgamers.de" >WebGamers</a></p>
+                <p style="float:right;"><a ui-sref="imprint" translate="footer_imprint">Imprint</a></p>
+                <p style="clear:both;"></p>
             </div>
         </div>
 
@@ -153,8 +155,28 @@
         <script src="scripts/app/entities/spawnPoint/spawnPoint-detail.controller.js"></script>
         <script src="scripts/components/entities/spawnPoint/spawnPoint.service.js"></script>
         <script src="scripts/components/game/game.directive.js"></script>
+        <script src="scripts/app/imprint/imprint.js"></script>
+        <script src="scripts/app/imprint/imprint.controller.js"></script>
         <script src="scripts/app/game/game.js"></script>
         <script src="scripts/app/game/game.controller.js"></script>
+
+        <script src="scripts/app/game/engine/GameEngine.js"></script>
+        <script src="scripts/app/game/engine/config.js"></script>
+        <script src="scripts/app/game/engine/EventDispatcher.js"></script>
+        <script src="scripts/app/game/engine/Logger.js"></script>
+        <script src="scripts/app/game/engine/eventplayer/MoveToEventPlayer.js"></script>
+        <script src="scripts/app/game/engine/eventplayer/TurnToEventPlayer.js"></script>
+        <script src="scripts/app/game/engine/eventplayer/ShootAtEventPlayer.js"></script>
+        <script src="scripts/app/game/engine/eventplayer/TokenSpawnedEventPlayer.js"></script>
+        <script src="scripts/app/game/engine/eventplayer/TokenDiedEventPlayer.js"></script>
+        <script src="scripts/app/game/engine/eventplayer/GameEventType.js"></script>
+        <script src="scripts/app/game/engine/eventplayer/TokenBlueprintKey.js"></script>
+        <script src="scripts/app/game/engine/token/Token.js"></script>
+        <script src="scripts/app/game/engine/token/Grunt.js"></script>
+        <script src="scripts/app/game/engine/token/Direction.js"></script>
+
+        <script src="scripts/lib/kinetic.loader.js"></script>
+        <script src="scripts/lib/Math.js"></script>
         <!-- endbuild -->
 </body>
 </html>
