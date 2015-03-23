@@ -4,6 +4,7 @@ package de.overwatch.gungungun.game.util;
 import de.overwatch.gungungun.domain.Arena;
 import de.overwatch.gungungun.domain.Hero;
 import de.overwatch.gungungun.domain.Party;
+import de.overwatch.gungungun.domain.SpawnPoint;
 import de.overwatch.gungungun.game.GameState;
 import de.overwatch.gungungun.game.GameStateBuilder;
 import de.overwatch.gungungun.game.builder.TestArenaBuilder;
@@ -17,30 +18,53 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class ArenaBoardTest {
 
     private ArenaBoard arenaBoard;
-    private HeroToken heroToken;
+
+    private HeroToken heroToken1;
+    private HeroToken heroToken2;
+
     private GameState state;
 
 	@Before
     public void init(){
         Arena arena = new TestArenaBuilder().build();
 
-        state = new GameStateBuilder().withArenaCoordinates(arena.getArenaCoordinates()).build();
+        Party party1 = new TestPartyBuilder().withHero(TestTokenBlueprint.GRUNT).build();
+        Hero hero1 = party1.getHeroes().iterator().next();
 
-        Party party = new TestPartyBuilder().withHero(TestTokenBlueprint.GRUNT).build();
-        Hero hero = party.getHeroes().iterator().next();
+        Party party2 = new TestPartyBuilder().withHero(TestTokenBlueprint.GRUNT).build();
+        Hero hero2 = party2.getHeroes().iterator().next();
 
-        heroToken = new HeroToken(hero, new Coordinate( 7,4 ));
-        heroToken.setDirection(Direction.NORTH);
+        Collection<Party> parties = new LinkedList<>();
+        parties.add(party1);
+        parties.add(party2);
 
+        // we are not going to use these spawnpoints
+        SpawnPoint sp1 = new SpawnPoint();
+        sp1.setGroupId(1);
+        sp1.setX(2);
+        sp1.setY(4);
 
-        arenaBoard = new ArenaBoard(state.getCoordinatesMap(), Collections.singleton(heroToken));
+        SpawnPoint sp2 = new SpawnPoint();
+        sp2.setGroupId(2);
+        sp2.setX(2);
+        sp2.setY(5);
+
+        Collection<SpawnPoint> spawns = new LinkedList<>();
+        spawns.add(sp1);
+        spawns.add(sp2);
+
+        // we use the GameStateBuilder just for transforming our ArenaCoordinates
+        state = new GameStateBuilder()
+                .withArenaCoordinates(arena.getArenaCoordinates())
+                .withParties(parties, spawns)
+                .build();
+
+        arenaBoard = new ArenaBoard(state.getCoordinatesMap(), state.getHeroes());
     }
 	
 	@Test
@@ -49,7 +73,7 @@ public class ArenaBoardTest {
 		Assert.assertTrue(arenaBoard.isCoordinateBlockingLOS(new Coordinate(4, 5)));
 		Assert.assertTrue(arenaBoard.isCoordinateBlockingLOS(new Coordinate(1, 1)));
 		
-		Assert.assertFalse(arenaBoard.isCoordinateBlockingLOS(new Coordinate(2, 4)));
+		Assert.assertTrue(arenaBoard.isCoordinateBlockingLOS(new Coordinate(2, 4)));
 		Assert.assertFalse(arenaBoard.isCoordinateBlockingLOS(new Coordinate(7, 9)));
 		
 		Assert.assertTrue(arenaBoard.isCoordinateBlockingMovement(new Coordinate(7, 4)));
@@ -72,7 +96,7 @@ public class ArenaBoardTest {
         Coordinate coordinate = new Coordinate(14,14);
         BoardCoordinate bc = new BoardCoordinate(coordinate,true,true);
         coordinatesMap.put(coordinate,bc);
-        arenaBoard = new ArenaBoard(coordinatesMap, Collections.singleton(heroToken));
+        arenaBoard = new ArenaBoard(coordinatesMap, state.getHeroes());
 
         arenaBoard.getShortestPath( new Coordinate(7,8), coordinate );
     }
@@ -98,4 +122,13 @@ public class ArenaBoardTest {
 		Assert.assertEquals(new Coordinate(7, 3), shortPath2.get(2));
 		Assert.assertEquals(new Coordinate(6, 2), shortPath2.get(3));
 	}
+
+    @Test
+    public void testLos(){
+        Assert.assertTrue(arenaBoard.isLOSFreeToTarget(new Coordinate(7,11), new Coordinate(7,5)));
+        Assert.assertFalse(arenaBoard.isLOSFreeToTarget(new Coordinate(7,11), new Coordinate(7,3)));
+
+        // Coordinate 7,4 is not transparent, but its still part of the Map so the Los until it is free
+        Assert.assertTrue(arenaBoard.isLOSFreeToTarget(new Coordinate(7,11), new Coordinate(7,4)));
+    }
 }

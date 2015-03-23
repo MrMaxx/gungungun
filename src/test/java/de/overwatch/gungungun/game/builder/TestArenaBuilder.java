@@ -53,8 +53,8 @@ public class TestArenaBuilder {
         arenaCoordinates.add(createArenaCoordinate(arena, true, true, new Coordinate(7, 2)));
         arenaCoordinates.add(createArenaCoordinate(arena, true, true, new Coordinate(7, 3)));
 
-        // NOT PERMEABLE
-        arenaCoordinates.add(createArenaCoordinate(arena, true, true, new Coordinate(7, 4)));
+        // NOT PERMEABLE AND NOT TRANSPARENT
+        arenaCoordinates.add(createArenaCoordinate(arena, false, false, new Coordinate(7, 4)));
         arenaCoordinates.add(createArenaCoordinate(arena, true, true, new Coordinate(7, 5)));
         arenaCoordinates.add(createArenaCoordinate(arena, true, true, new Coordinate(7, 6)));
         arenaCoordinates.add(createArenaCoordinate(arena, true, true, new Coordinate(7, 7)));

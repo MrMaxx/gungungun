@@ -31,6 +31,11 @@ public class Hero implements Serializable {
     @ManyToOne
     private TokenBlueprint tokenBlueprint;
 
+    @OneToMany(mappedBy = "hero")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Behavior> behaviors = new HashSet<>();
+
     public Long getId() {
         return id;
     }
@@ -61,6 +66,14 @@ public class Hero implements Serializable {
 
     public void setTokenBlueprint(TokenBlueprint tokenBlueprint) {
         this.tokenBlueprint = tokenBlueprint;
+    }
+
+    public Set<Behavior> getBehaviors() {
+        return behaviors;
+    }
+
+    public void setBehaviors(Set<Behavior> behaviors) {
+        this.behaviors = behaviors;
     }
 
     @Override

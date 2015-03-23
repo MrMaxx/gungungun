@@ -5,6 +5,7 @@ import de.overwatch.gungungun.domain.Arena;
 import de.overwatch.gungungun.repository.ArenaRepository;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.MockitoAnnotations;
@@ -35,6 +36,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringApplicationConfiguration(classes = Application.class)
 @WebAppConfiguration
 @IntegrationTest
+@Ignore
 public class ArenaResourceTest {
 
     private static final String DEFAULT_ARENA_KEY = "SAMPLE_TEXT";

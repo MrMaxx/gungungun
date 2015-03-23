@@ -7,6 +7,7 @@ import org.apache.commons.logging.Log;
 
 import java.util.*;
 
+@Deprecated
 public class LosBoard {
 
 	private boolean isInitialized = false;

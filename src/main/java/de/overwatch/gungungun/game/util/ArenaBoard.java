@@ -37,11 +37,59 @@ public class ArenaBoard implements Serializable{
                     && levelCoordinateBlockingLOSMap.get( coordinate ))
 				 );
 	}
-	public List<Coordinate> getShortestPathWithoutTargetCoordinate( Coordinate source, Coordinate target ) throws NoPathExistsException{
-		List<Coordinate> result = getShortestPath( source, target );
-		result.remove( result.size()-1 );
-		return result;
-	}
+
+    public boolean isLOSFreeToTarget( Coordinate source, Coordinate target ){
+        // losLine explicitly excludes source and target coordinate
+        LosLine losLine = Bresenham.getLosLine( source, target );
+
+        for( Coordinate coordinate: losLine.getLine() ){
+            if( this.isCoordinateBlockingLOS(coordinate) ){
+                return false;
+            }
+        }
+        boolean leftIsBlocked = false;
+        boolean rightIsBlocked = false;
+        for( LinePair pair: losLine.getLinePairs() ){
+            if(  this.isCoordinateBlockingLOS(pair.getLeft()) ){
+                leftIsBlocked = true;
+            }
+            if(  this.isCoordinateBlockingLOS(pair.getRight()) ){
+                rightIsBlocked = true;
+            }
+            if( leftIsBlocked && rightIsBlocked ){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * TODO: This is a dirty hack...target Coordinate most of the time is blocked by a Token, so I need to find the shortest Path to a Coordinate around this target
+     *      Problem: If the adjescending fields are also blocked by Tokens there is no shortets PAth to this Token, which breaks some of the heuristics
+     */
+    public List<Coordinate> getShortestPathWithoutTargetCoordinate( Coordinate source, Coordinate target ) throws NoPathExistsException {
+        Collection<Coordinate> around = target.getCoordinateInRange(1);
+        List<Coordinate> result = null;
+        for(Coordinate newTarget: around){
+            List<Coordinate> path = null;
+            try {
+                path = getShortestPath(source, newTarget);
+            } catch (NoPathExistsException e) {
+                //Do nothin...just skip
+                continue;
+            }
+            if((result == null && path != null)
+                    ||
+               (result !=null && path != null && result.size()>path.size())){
+                result = path;
+            }
+        }
+        if(result==null){
+            throw new NoPathExistsException();
+        }
+        return result;
+    }
+
 	public List<Coordinate> getShortestPath( Coordinate from, Coordinate to ) throws NoPathExistsException{
 
 		List<Coordinate> result = new LinkedList<Coordinate>();

@@ -4,6 +4,12 @@ var EventDispatcher = {
     finished: false,
     index: 0,
 
+    reset:function(){
+        EventDispatcher.events = new Array();
+        EventDispatcher.index = 0;
+        EventDispatcher.stage = null;
+        EventDispatcher.finished = false;
+    },
     playNext: function() {
         if( EventDispatcher.index >= EventDispatcher.events.length ){
             return;

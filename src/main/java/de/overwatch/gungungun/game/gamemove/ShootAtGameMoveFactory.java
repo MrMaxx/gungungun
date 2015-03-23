@@ -23,7 +23,7 @@ public class ShootAtGameMoveFactory implements GameMoveFactory{
                     // is the other Token in Range of my Weapon
                     && heroToken.getLongRangeAttackRange() >= heroToken.getCoordinate().getDistance(otherToken.getCoordinate())
                     // is there a free LOS
-                    && gameState.getLosBoard().isLOSFree(heroToken.getCoordinate(), otherToken.getCoordinate()) ){
+                    && gameState.getArenaBoard().isLOSFreeToTarget(heroToken.getCoordinate(), otherToken.getCoordinate()) ){
                 ShootAtGameMove sm = new ShootAtGameMove(otherToken);
                 // Turn around if needed
                 if(!heroToken.getCoordinate().isIn45Degree(heroToken.getDirection(), otherToken.getCoordinate())){

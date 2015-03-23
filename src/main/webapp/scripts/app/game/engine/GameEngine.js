@@ -24,6 +24,7 @@ function GameEngine(events, stage) {
         stage.add(backgroundLayer);
         stage.add(objectLayer);
 
+        EventDispatcher.reset();
         EventDispatcher.stage = self.stage;
         EventDispatcher.events = self.events;
 

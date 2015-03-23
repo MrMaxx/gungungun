@@ -1,10 +1,11 @@
 'use strict';
 
 angular.module('gungungunApp')
-    .controller('HeroController', function ($scope, Hero, Party, TokenBlueprint) {
+    .controller('HeroController', function ($scope, Hero, Party, TokenBlueprint, Behavior) {
         $scope.heros = [];
         $scope.partys = Party.query();
         $scope.tokenblueprints = TokenBlueprint.query();
+        $scope.behaviors = Behavior.query();
         $scope.loadAll = function() {
             Hero.query(function(result) {
                $scope.heros = result;

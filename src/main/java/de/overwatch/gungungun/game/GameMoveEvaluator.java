@@ -2,11 +2,12 @@ package de.overwatch.gungungun.game;
 
 
 import de.overwatch.gungungun.game.gamemove.GameMove;
-import de.overwatch.gungungun.game.heuristic.CloserDistanceToNearestEnemyHeuristic;
-import de.overwatch.gungungun.game.heuristic.Heuristic;
+import de.overwatch.gungungun.game.heuristic.*;
+import de.overwatch.gungungun.game.model.ActiveBehavior;
 import de.overwatch.gungungun.game.model.HeroToken;
 import org.springframework.stereotype.Component;
 
+import javax.inject.Inject;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
@@ -14,21 +15,21 @@ import java.util.List;
 @Component
 public class GameMoveEvaluator {
 
-    private static final List<Heuristic> HEURISTICS = new LinkedList<>();
-    static{
-        HEURISTICS.add(new CloserDistanceToNearestEnemyHeuristic());
-    }
+    @Inject
+    private HeuristicStore heuristicStore;
 
 
     public void evaluateGameMoves(GameState gameState, HeroToken heroToken, Collection<GameMove> gameMoves){
 
-        for(GameMove gameMove: gameMoves){
-            for(Heuristic heuristic: HEURISTICS){
+        for(GameMove gameMove: gameMoves) {
+            for (ActiveBehavior behavior : heroToken.getBehaviors()) {
+                AbstractHeuristic heuristic = heuristicStore.getHeuristicByName(behavior.getHeuristicName());
                 gameMove.addBaseScore(
                         heuristic.evaluate(gameState, heroToken, gameMove),
                         heuristic.getClass().getSimpleName());
             }
         }
+
     }
 
     /*
@@ -38,7 +39,7 @@ public class GameMoveEvaluator {
 
         GameMove bestMove = null;
         for(GameMove gameMove: gameMoves){
-            if(bestMove==null || bestMove.getOverallScore()>bestMove.getOverallScore()){
+            if(bestMove==null || gameMove.getOverallScore()>bestMove.getOverallScore()){
                 bestMove = gameMove;
             }
         }

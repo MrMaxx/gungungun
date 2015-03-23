@@ -23,12 +23,11 @@ public class AttackGameMoveExecutor {
         if(attackGameMove.getTurnToDirection() != null){
             result.add(new TurnToEvent(heroToken, attackGameMove.getTurnToDirection()));
             heroToken.setDirection(attackGameMove.getTurnToDirection());
-            gameState.heroTurned(attackGameMove.getTarget());
         }
 
         Random rand = new Random();
 
-        int baseDamage = rand.nextInt(heroToken.getShortRangeWeaponDamageMaximum() - heroToken.getShortRangeWeaponDamageMaximum());
+        int baseDamage = rand.nextInt(heroToken.getShortRangeWeaponDamageMaximum() - heroToken.getShortRangeWeaponDamageMinimum());
         int damage = baseDamage + heroToken.getShortRangeWeaponDamageMinimum();
 
         attackGameMove.getTarget().inflictDamage(damage);

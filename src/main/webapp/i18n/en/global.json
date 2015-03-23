@@ -5,6 +5,7 @@
         "menu": {
             "home": "Home",
             "game": "Game",
+            "party": "MyParty",
             "entities": {
                 "main": "Entities",
                 "tokenBlueprint": "TokenBlueprint",
@@ -14,6 +15,7 @@
                 "arena": "Arena",
                 "fight": "Fight",
                 "spawnPoint": "SpawnPoint",
+                "behavior": "Behavior",
                 "additionalEntity": "JHipster will add addtional entities"
             },
             "account": {

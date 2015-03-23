@@ -14,7 +14,8 @@
             },
             "name": "Name",
             "party": "party",
-            "TokenBlueprint": "TokenBlueprint"
+            "TokenBlueprint": "TokenBlueprint",
+            "Behavior": "Behavior"
         }
     }
 }

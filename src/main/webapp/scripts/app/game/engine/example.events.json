@@ -258,7 +258,7 @@
     {
         "elementId": 1,
         "targetId": 2,
-        "damage": 11,
+        "damage": 12,
         "type": "SHOOT"
     },
     {
@@ -270,31 +270,31 @@
     {
         "elementId": 1,
         "targetId": 2,
+        "damage": 11,
+        "type": "SHOOT"
+    },
+    {
+        "elementId": 2,
+        "targetId": 1,
         "damage": 12,
         "type": "SHOOT"
     },
     {
         "elementId": 2,
         "targetId": 1,
-        "damage": 10,
-        "type": "SHOOT"
-    },
-    {
-        "elementId": 2,
-        "targetId": 1,
-        "damage": 11,
-        "type": "SHOOT"
-    },
-    {
-        "elementId": 2,
-        "targetId": 1,
-        "damage": 10,
+        "damage": 13,
         "type": "SHOOT"
     },
     {
         "elementId": 2,
         "targetId": 1,
         "damage": 13,
+        "type": "SHOOT"
+    },
+    {
+        "elementId": 2,
+        "targetId": 1,
+        "damage": 11,
         "type": "SHOOT"
     },
     {
@@ -304,13 +304,7 @@
     {
         "elementId": 1,
         "targetId": 2,
-        "damage": 14,
-        "type": "SHOOT"
-    },
-    {
-        "elementId": 1,
-        "targetId": 2,
-        "damage": 12,
+        "damage": 11,
         "type": "SHOOT"
     },
     {
@@ -322,45 +316,41 @@
     {
         "elementId": 1,
         "targetId": 2,
-        "damage": 14,
+        "damage": 13,
         "type": "SHOOT"
-    },
-    {
-        "elementId": 2,
-        "targetId": 1,
-        "damage": 12,
-        "type": "SHOOT"
-    },
-    {
-        "elementId": 2,
-        "targetId": 1,
-        "damage": 10,
-        "type": "SHOOT"
-    },
-    {
-        "elementId": 2,
-        "targetId": 1,
-        "damage": 10,
-        "type": "SHOOT"
-    },
-    {
-        "elementId": 2,
-        "targetId": 1,
-        "damage": 10,
-        "type": "SHOOT"
-    },
-    {
-        "round": 6,
-        "type": "ROUND_ENDED"
     },
     {
         "elementId": 1,
         "targetId": 2,
+        "damage": 11,
+        "type": "SHOOT"
+    },
+    {
+        "elementId": 2,
+        "targetId": 1,
+        "damage": 10,
+        "type": "SHOOT"
+    },
+    {
+        "elementId": 2,
+        "targetId": 1,
         "damage": 14,
         "type": "SHOOT"
     },
     {
         "elementId": 2,
+        "targetId": 1,
+        "damage": 14,
+        "type": "SHOOT"
+    },
+    {
+        "elementId": 2,
+        "targetId": 1,
+        "damage": 13,
+        "type": "SHOOT"
+    },
+    {
+        "elementId": 1,
         "type": "TOKEN_DIED"
     },
     {

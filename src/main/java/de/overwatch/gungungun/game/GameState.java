@@ -15,7 +15,6 @@ public class GameState {
     private Map<Coordinate, BoardCoordinate> coordinatesMap = new HashMap<>();
 
     private ArenaBoard arenaBoard;
-    private LosBoard losBoard;
 
     private int round;
 
@@ -24,7 +23,6 @@ public class GameState {
         this.idToHeroTokenMap = idToHeroTokenMap;
         this.coordinatesMap = coordinatesMap;
         this.arenaBoard = new ArenaBoard(coordinatesMap, idToHeroTokenMap.values());
-        this.losBoard = new LosBoard(arenaBoard, idToHeroTokenMap.values());
         this.round = 1;
     }
 
@@ -71,19 +69,12 @@ public class GameState {
     public void heroMoved(HeroToken heroToken) {
         // Todo: this is pretty costly...make it better someday
         this.arenaBoard = new ArenaBoard(coordinatesMap, idToHeroTokenMap.values());
-        this.losBoard = new LosBoard(arenaBoard, idToHeroTokenMap.values());
-    }
-
-    public void heroTurned(HeroToken heroToken) {
-        losBoard.removeToken(heroToken);
-        losBoard.addToken(heroToken);
     }
 
     public void heroKilled(HeroToken heroToken) {
         idToHeroTokenMap.remove(heroToken.getId());
         // Todo: this is pretty costly...make it better someday
         this.arenaBoard = new ArenaBoard(coordinatesMap, idToHeroTokenMap.values());
-        this.losBoard = new LosBoard(arenaBoard, idToHeroTokenMap.values());
     }
 
     public Map<Coordinate, BoardCoordinate> getCoordinatesMap() {
@@ -94,7 +85,4 @@ public class GameState {
         return arenaBoard;
     }
 
-    public LosBoard getLosBoard() {
-        return losBoard;
-    }
 }

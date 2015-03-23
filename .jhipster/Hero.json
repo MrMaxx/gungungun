@@ -19,6 +19,15 @@
             "relationshipType": "many-to-one",
             "otherEntityNameCapitalized": "TokenBlueprint",
             "otherEntityField": "id"
+        },
+        {
+            "relationshipId": 3,
+            "relationshipName": "Behavior",
+            "relationshipNameCapitalized": "Behavior",
+            "relationshipFieldName": "behavior",
+            "otherEntityName": "behavior",
+            "relationshipType": "one-to-many",
+            "otherEntityNameCapitalized": "Behavior"
         }
     ],
     "fields": [

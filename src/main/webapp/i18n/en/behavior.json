@@ -1,0 +1,20 @@
+{
+    "gungungunApp": {
+        "behavior" : {
+            "home": {
+                "title": "Behaviors",
+                "createLabel": "Create a new Behavior",
+                "createOrEditLabel": "Create or edit a Behavior"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Behavior {{ id }}?"
+            },
+            "detail": {
+                "title": "Behavior"
+            },
+            "priority": "Priority",
+            "heuristicName": "HeuristicName",
+            "Hero": "Hero"
+        }
+    }
+}

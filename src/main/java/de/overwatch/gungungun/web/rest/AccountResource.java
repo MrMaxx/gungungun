@@ -6,6 +6,7 @@ import de.overwatch.gungungun.domain.User;
 import de.overwatch.gungungun.repository.UserRepository;
 import de.overwatch.gungungun.security.SecurityUtils;
 import de.overwatch.gungungun.service.MailService;
+import de.overwatch.gungungun.service.PartyService;
 import de.overwatch.gungungun.service.UserService;
 import de.overwatch.gungungun.web.rest.dto.UserDTO;
 import org.apache.commons.lang.StringUtils;
@@ -41,6 +42,9 @@ public class AccountResource {
     @Inject
     private MailService mailService;
 
+    @Inject
+    private PartyService partyService;
+
     /**
      * POST  /register -> register the user.
      */
@@ -64,6 +68,8 @@ public class AccountResource {
             request.getServerName() +          // "myhost"
             ":" +                              // ":"
             request.getServerPort();           // "80"
+
+            partyService.createDefaultParty(user.getId());
 
             mailService.sendActivationEmail(user, baseUrl);
             return new ResponseEntity<>(HttpStatus.CREATED);

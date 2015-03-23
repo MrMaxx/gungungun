@@ -23,7 +23,6 @@ public class ShootAtGameMoveExecutor {
         if(shootAtGameMove.getTurnToDirection() != null){
             result.add(new TurnToEvent(heroToken, shootAtGameMove.getTurnToDirection()));
             heroToken.setDirection(shootAtGameMove.getTurnToDirection());
-            gameState.heroTurned(shootAtGameMove.getTarget());
         }
 
         Random rand = new Random();
