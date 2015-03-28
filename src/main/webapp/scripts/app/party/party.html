@@ -1,52 +1,118 @@
 <div ng-cloak>
-    <div class="panel panel-default">
+
+
+    <div ng-repeat="(id, hero) in heroes" class="panel panel-primary">
+        <div class="panel-heading">
+
+            <form ng-submit="changeName(hero.id)">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon1">Private</span>
+                            <input id="tokenName"
+                                   ng-model="hero.name"
+                                   name="tokenName"
+                                   value="{{hero.name}}"
+                                   type="text"
+                                   class="form-control"
+                                   required
+                                   placeholder="give me a name">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <button type="submit" class="btn btn-default">change</button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
         <div class="panel-body">
             <div class="row">
-                <div class="col-md-12">
-
-                    <div style="float:left;">
+                <div class="col-md-4">
+                    <div style="text-align: center;">
                         <img width="269" src="http://overwatch.de/level/live/game/interface/marines/marine_info.jpg" />
                     </div>
-                    <div style="float:left;padding-left:15px;">
-                        <table class="table">
-                            <tr>
-                                <td>
-                                    <form>
-                                        <label for="tokenName">Name</label>
-                                        <div class="input-group">
-                                            <span class="input-group-addon" id="basic-addon1">Private</span>
-                                            <input id="tokenName" type="text" class="form-control" placeholder="give me a name" aria-describedby="basic-addon1">
-                                        </div>
-                                    </form>
+                </div>
+                <div class="col-md-4">
+                    <div class="panel panel-default">
 
-                                </td>
-                            </tr><tr>
-                                <td>
-                                    <form>
-                                        <label for="tokenBlueprint">Type</label>
-                                        <div class="input-group">
-                                            <span class="input-group-addon" id="basic-addon1">Private</span>
-                                            <input id="tokenBlueprint" type="text" class="form-control" placeholder="give me a name" aria-describedby="basic-addon1">
-                                        </div>
-                                    </form>
-                                </td>
-                                <td>
+                        <div class="panel-body">
 
+                                <label>Type</label>
+                                <ui-select ng-model="tokenBlueprintSelected[hero.id]"
+                                           on-select="typeSelected($item, $model)"
+                                           title="Choose a Type">
+                                    <ui-select-match placeholder="Select a type for the Hero.">{{tokenBlueprintSelected[hero.id].tokenKey}}</ui-select-match>
+                                    <ui-select-choices repeat="tokenBlueprint in tokenBlueprints">
+                                        <small>{{tokenBlueprint.tokenKey}}</small>
+                                    </ui-select-choices>
+                                </ui-select>
 
-                                </td>
-                            </tr>
+                            <br />
 
+                            <p ng-show="tokenBlueprintSelected[hero.id].tokenKey=='GRUNT'" >
+                                A Basic Marine Type Robot...the GRUNT.
+                            </p>
+
+                            <p ng-show="tokenBlueprintSelected[hero.id].tokenKey=='SPEEDY'" >
+                                A Basic Marine Type Robot...SPEEDY...a little more agility but not as healthy as the GRUNT.
+                            </p>
+                        </div>
+
+                        <table class="table" ng-show="tokenBlueprintSelected">
+                            <tr><td>health</td><td>{{tokenBlueprintSelected[hero.id].health}}</td></tr>
+                            <tr><td>actionsPerTurn</td><td>{{tokenBlueprintSelected[hero.id].actionsPerTurn}}</td></tr>
+                            <tr><td>longRangeAttackRange</td><td>{{tokenBlueprintSelected[hero.id].longRangeAttackRange}}</td></tr>
+                            <tr><td>longRangeWeaponDamage</td><td>{{tokenBlueprintSelected[hero.id].longRangeWeaponDamageMinimum}}-{{tokenBlueprintSelected[hero.id].longRangeWeaponDamageMaximum}}</td></tr>
+                            <tr><td>shortRangeAttackRange</td><td>{{tokenBlueprintSelected[hero.id].shortRangeAttackRange}}</td></tr>
+                            <tr><td>shortRangeWeaponDamageMaximum</td><td>{{tokenBlueprintSelected[hero.id].shortRangeWeaponDamageMinimum}}-{{tokenBlueprintSelected[hero.id].shortRangeWeaponDamageMaximum}}</td></tr>
                         </table>
+
                     </div>
-                    <div style="clear:both;"></div>
-
-
 
 
                 </div>
                 <div class="col-md-4">
 
+                    <div ng-repeat="behavior in hero.behaviors" class="panel panel-default">
+                        <div class="panel-heading">Behavior</div>
+                        <div class="panel-body">
+
+                            <ui-select ng-model="heuristicSelected[behavior.id]"
+                                       on-select="firstBehaviorSelected(hero.id, behavior.id, $item, $model)"
+                                       title="Choose a heuristic">
+                                <ui-select-match placeholder="Select a heuristic.">{{heuristicSelected[behavior.id].heuristicName}}</ui-select-match>
+                                <ui-select-choices repeat="heuristic in heuristics">
+                                    <small>{{heuristic.heuristicName}}</small>
+                                </ui-select-choices>
+                            </ui-select>
+
+                            <br />
+
+                            <p ng-show="heuristicSelected[behavior.id].heuristicName=='GOOD_SHOOTING_POSITION'" >
+                                The more targets you have, the better the shootingPosition gets.
+                            </p>
+
+                            <p ng-show="heuristicSelected[behavior.id].heuristicName=='CLOSER_DISTANCE_TO_NEAREST_ENEMY'" >
+                                The closer you are to your nearest target, the better. This is good for Close Combat type Robots.
+                            </p>
+
+                            <p ng-show="heuristicSelected[behavior.id].heuristicName=='NEAREST_ENEMY_CLOSE_TO_LONG_RANGE_WEAPON_RANGE'" >
+                                If you dont want to get too close to your target. This is optimal teammate for 'SHOOTING_IS_GOOD'.
+                            </p>
+
+                            <p ng-show="heuristicSelected[behavior.id].heuristicName=='SHOOTING_IS_GOOD'" >
+                                This is needed if you want to shoot...at all. It can also be used to rank shooting above other heuristics.<br />
+                                If you have a good Long Range Weapon its always good to shoot it. But it its a poor one...you should not use this one?
+                            </p>
+
+
+                        </div>
+                    </div>
+
+
                 </div>
+
 
             </div>
         </div>

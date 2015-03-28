@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('gungungunApp')
-    .factory('Party', function ($resource) {
-        return $resource('api/partys/:id', {}, {
+    .factory('Party', function ($resource, Principal) {
+        return $resource('api/users/:userId/parties/:partyId', {partyId: '@id'}, {
             'query': { method: 'GET', isArray: true},
             'get': {
                 method: 'GET',

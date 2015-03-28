@@ -20,7 +20,7 @@ import java.util.List;
  * REST controller for managing Hero.
  */
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/users/{userId}/parties/{partyId}")
 public class HeroResource {
 
     private final Logger log = LoggerFactory.getLogger(HeroResource.class);
@@ -29,74 +29,62 @@ public class HeroResource {
     private HeroRepository heroRepository;
 
     /**
-     * POST  /heros -> Create a new hero.
-     */
-    @RequestMapping(value = "/heros",
-            method = RequestMethod.POST,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    @Timed
-    public ResponseEntity<Void> create(@RequestBody Hero hero) throws URISyntaxException {
-        log.debug("REST request to save Hero : {}", hero);
-        if (hero.getId() != null) {
-            return ResponseEntity.badRequest().header("Failure", "A new hero cannot already have an ID").build();
-        }
-        heroRepository.save(hero);
-        return ResponseEntity.created(new URI("/api/heros/" + hero.getId())).build();
-    }
-
-    /**
      * PUT  /heros -> Updates an existing hero.
      */
-    @RequestMapping(value = "/heros",
+    @RequestMapping(value = "/heroes",
         method = RequestMethod.PUT,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<Void> update(@RequestBody Hero hero) throws URISyntaxException {
+    public ResponseEntity<Void> update(
+            @PathVariable("partyId")Long partyId,
+            @PathVariable("userId")Long userId,
+            @RequestBody Hero hero
+    ) throws URISyntaxException {
         log.debug("REST request to update Hero : {}", hero);
         if (hero.getId() == null) {
-            return create(hero);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
-        heroRepository.save(hero);
+        Hero originalHero = heroRepository.findHero(hero.getId(), partyId, userId);
+        if (originalHero == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        originalHero.setName(hero.getName());
+        originalHero.setTokenBlueprint(hero.getTokenBlueprint());
+        heroRepository.save(originalHero);
         return ResponseEntity.ok().build();
     }
 
     /**
      * GET  /heros -> get all the heros.
      */
-    @RequestMapping(value = "/heros",
+    @RequestMapping(value = "/heroes",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public List<Hero> getAll() {
+    public List<Hero> getAll(
+            @PathVariable("partyId")Long partyId,
+            @PathVariable("userId")Long userId ) {
         log.debug("REST request to get all Heros");
-        return heroRepository.findAll();
+        return heroRepository.findHeroes(partyId, userId);
     }
 
     /**
      * GET  /heros/:id -> get the "id" hero.
      */
-    @RequestMapping(value = "/heros/{id}",
+    @RequestMapping(value = "/heroes/{id}",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<Hero> get(@PathVariable Long id, HttpServletResponse response) {
+    public ResponseEntity<Hero> get(
+            @PathVariable("partyId")Long partyId,
+            @PathVariable("userId")Long userId,
+            @PathVariable Long id, HttpServletResponse response) {
         log.debug("REST request to get Hero : {}", id);
-        Hero hero = heroRepository.findOne(id);
+        Hero hero = heroRepository.findHero(id, partyId, userId);
         if (hero == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(hero, HttpStatus.OK);
     }
 
-    /**
-     * DELETE  /heros/:id -> delete the "id" hero.
-     */
-    @RequestMapping(value = "/heros/{id}",
-            method = RequestMethod.DELETE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    @Timed
-    public void delete(@PathVariable Long id) {
-        log.debug("REST request to delete Hero : {}", id);
-        heroRepository.delete(id);
-    }
 }

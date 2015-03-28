@@ -47,21 +47,6 @@ public class FightResource {
         return ResponseEntity.created(new URI("/api/fights/" + fight.getId())).build();
     }
 
-    /**
-     * PUT  /fights -> Updates an existing fight.
-     */
-    @RequestMapping(value = "/fights",
-        method = RequestMethod.PUT,
-        produces = MediaType.APPLICATION_JSON_VALUE)
-    @Timed
-    public ResponseEntity<Void> update(@RequestBody Fight fight) throws URISyntaxException {
-        log.debug("REST request to update Fight : {}", fight);
-        if (fight.getId() == null) {
-            return create(fight);
-        }
-        fightRepository.save(fight);
-        return ResponseEntity.ok().build();
-    }
 
     /**
      * GET  /fights -> get all the fights.
@@ -94,15 +79,4 @@ public class FightResource {
         return new ResponseEntity<>(fight, HttpStatus.OK);
     }
 
-    /**
-     * DELETE  /fights/:id -> delete the "id" fight.
-     */
-    @RequestMapping(value = "/fights/{id}",
-            method = RequestMethod.DELETE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    @Timed
-    public void delete(@PathVariable Long id) {
-        log.debug("REST request to delete Fight : {}", id);
-        fightRepository.delete(id);
-    }
 }

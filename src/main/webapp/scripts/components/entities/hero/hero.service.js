@@ -2,7 +2,7 @@
 
 angular.module('gungungunApp')
     .factory('Hero', function ($resource) {
-        return $resource('api/heros/:id', {}, {
+        return $resource('api//users/:userId/parties/:partyId/heroes/:id', {}, {
             'query': { method: 'GET', isArray: true},
             'get': {
                 method: 'GET',

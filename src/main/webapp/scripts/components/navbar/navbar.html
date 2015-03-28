@@ -23,46 +23,13 @@
                         <span translate="global.menu.game">Game</span>
                     </a>
                 </li>
-                <li ui-sref-active="active">
+                <li ui-sref-active="active" ng-show="isInRole('ROLE_USER')">
                     <a ui-sref="myparty">
                         <span class="glyphicon glyphicon-tower"></span>
                         <span translate="global.menu.party">Game</span>
                     </a>
                 </li>
 
-
-
-
-                <li ui-sref-active="active" ng-switch-when="true" class="dropdown pointer">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="">
-                                <span>
-                                    <span class="glyphicon glyphicon-th-list"></span>
-                                    <span class="hidden-tablet" translate="global.menu.entities.main">
-                                        Entities
-                                    </span>
-                                    <b class="caret"></b>
-                                </span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li ui-sref-active="active" ><a ui-sref="tokenBlueprint"><span class="glyphicon glyphicon-asterisk"></span>
-                        &#xA0;<span translate="global.menu.entities.tokenBlueprint">tokenBlueprint</span></a></li>
-                        <li ui-sref-active="active" ><a ui-sref="hero"><span class="glyphicon glyphicon-asterisk"></span>
-                        &#xA0;<span translate="global.menu.entities.hero">hero</span></a></li>
-                        <li ui-sref-active="active" ><a ui-sref="party"><span class="glyphicon glyphicon-asterisk"></span>
-                        &#xA0;<span translate="global.menu.entities.party">party</span></a></li>
-                        <li ui-sref-active="active" ><a ui-sref="arenaCoordinate"><span class="glyphicon glyphicon-asterisk"></span>
-                        &#xA0;<span translate="global.menu.entities.arenaCoordinate">arenaCoordinate</span></a></li>
-                        <li ui-sref-active="active" ><a ui-sref="arena"><span class="glyphicon glyphicon-asterisk"></span>
-                        &#xA0;<span translate="global.menu.entities.arena">arena</span></a></li>
-                        <li ui-sref-active="active" ><a ui-sref="fight"><span class="glyphicon glyphicon-asterisk"></span>
-                        &#xA0;<span translate="global.menu.entities.fight">fight</span></a></li>
-                        <li ui-sref-active="active" ><a ui-sref="spawnPoint"><span class="glyphicon glyphicon-asterisk"></span>
-                        &#xA0;<span translate="global.menu.entities.spawnPoint">spawnPoint</span></a></li>
-                        <li ui-sref-active="active" ><a ui-sref="behavior"><span class="glyphicon glyphicon-asterisk"></span>
-                        &#xA0;<span translate="global.menu.entities.behavior">behavior</span></a></li>
-                        <!-- JHipster will add entities to the menu here -->
-                    </ul>
-                </li>
                 <li ng-class="{active: $state.includes('account')}" class="dropdown pointer">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="">
                                 <span>

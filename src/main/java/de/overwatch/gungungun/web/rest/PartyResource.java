@@ -20,7 +20,7 @@ import java.util.List;
  * REST controller for managing Party.
  */
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/users/{userId}")
 public class PartyResource {
 
     private final Logger log = LoggerFactory.getLogger(PartyResource.class);
@@ -29,74 +29,57 @@ public class PartyResource {
     private PartyRepository partyRepository;
 
     /**
-     * POST  /partys -> Create a new party.
-     */
-    @RequestMapping(value = "/partys",
-            method = RequestMethod.POST,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    @Timed
-    public ResponseEntity<Void> create(@RequestBody Party party) throws URISyntaxException {
-        log.debug("REST request to save Party : {}", party);
-        if (party.getId() != null) {
-            return ResponseEntity.badRequest().header("Failure", "A new party cannot already have an ID").build();
-        }
-        partyRepository.save(party);
-        return ResponseEntity.created(new URI("/api/partys/" + party.getId())).build();
-    }
-
-    /**
      * PUT  /partys -> Updates an existing party.
      */
-    @RequestMapping(value = "/partys",
+    @RequestMapping(value = "/parties",
         method = RequestMethod.PUT,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<Void> update(@RequestBody Party party) throws URISyntaxException {
+    public ResponseEntity<Void> update(
+            @PathVariable("userId")Long userId,
+            @RequestBody Party party) throws URISyntaxException {
         log.debug("REST request to update Party : {}", party);
-        if (party.getId() == null) {
-            return create(party);
+        if (party.getId() != null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
-        partyRepository.save(party);
+        Party orginalParty = partyRepository.findParty(party.getId(), userId);
+        if (orginalParty != null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        orginalParty.setName(party.getName());
+        partyRepository.save(orginalParty);
         return ResponseEntity.ok().build();
     }
 
     /**
      * GET  /partys -> get all the partys.
      */
-    @RequestMapping(value = "/partys",
+    @RequestMapping(value = "/parties",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public List<Party> getAll() {
+    public List<Party> getAll(@PathVariable("userId")Long userId) {
         log.debug("REST request to get all Partys");
-        return partyRepository.findAll();
+        return partyRepository.findParties(userId);
     }
 
     /**
      * GET  /partys/:id -> get the "id" party.
      */
-    @RequestMapping(value = "/partys/{id}",
+    @RequestMapping(value = "/parties/{id}",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<Party> get(@PathVariable Long id, HttpServletResponse response) {
+    public ResponseEntity<Party> get(
+            @PathVariable Long id,
+            @PathVariable("userId")Long userId,
+            HttpServletResponse response) {
         log.debug("REST request to get Party : {}", id);
-        Party party = partyRepository.findOne(id);
+        Party party = partyRepository.findParty(id, userId);
         if (party == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(party, HttpStatus.OK);
     }
 
-    /**
-     * DELETE  /partys/:id -> delete the "id" party.
-     */
-    @RequestMapping(value = "/partys/{id}",
-            method = RequestMethod.DELETE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    @Timed
-    public void delete(@PathVariable Long id) {
-        log.debug("REST request to delete Party : {}", id);
-        partyRepository.delete(id);
-    }
 }

@@ -29,38 +29,6 @@ public class ArenaResource {
     private ArenaRepository arenaRepository;
 
     /**
-     * POST  /arenas -> Create a new arena.
-     */
-    @RequestMapping(value = "/arenas",
-            method = RequestMethod.POST,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    @Timed
-    public ResponseEntity<Void> create(@RequestBody Arena arena) throws URISyntaxException {
-        log.debug("REST request to save Arena : {}", arena);
-        if (arena.getId() != null) {
-            return ResponseEntity.badRequest().header("Failure", "A new arena cannot already have an ID").build();
-        }
-        arenaRepository.save(arena);
-        return ResponseEntity.created(new URI("/api/arenas/" + arena.getId())).build();
-    }
-
-    /**
-     * PUT  /arenas -> Updates an existing arena.
-     */
-    @RequestMapping(value = "/arenas",
-        method = RequestMethod.PUT,
-        produces = MediaType.APPLICATION_JSON_VALUE)
-    @Timed
-    public ResponseEntity<Void> update(@RequestBody Arena arena) throws URISyntaxException {
-        log.debug("REST request to update Arena : {}", arena);
-        if (arena.getId() == null) {
-            return create(arena);
-        }
-        arenaRepository.save(arena);
-        return ResponseEntity.ok().build();
-    }
-
-    /**
      * GET  /arenas -> get all the arenas.
      */
     @RequestMapping(value = "/arenas",
@@ -88,15 +56,4 @@ public class ArenaResource {
         return new ResponseEntity<>(arena, HttpStatus.OK);
     }
 
-    /**
-     * DELETE  /arenas/:id -> delete the "id" arena.
-     */
-    @RequestMapping(value = "/arenas/{id}",
-            method = RequestMethod.DELETE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    @Timed
-    public void delete(@PathVariable Long id) {
-        log.debug("REST request to delete Arena : {}", id);
-        arenaRepository.delete(id);
-    }
 }

@@ -25,6 +25,7 @@ public class Hero implements Serializable {
     @Column(name = "name")
     private String name;
 
+    @JsonIgnore
     @ManyToOne
     private Party party;
 
@@ -32,7 +33,6 @@ public class Hero implements Serializable {
     private TokenBlueprint tokenBlueprint;
 
     @OneToMany(mappedBy = "hero")
-    @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Behavior> behaviors = new HashSet<>();
 

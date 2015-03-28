@@ -12,7 +12,7 @@ angular.module('gungungunApp')
                 views: {
                     'content@': {
                         templateUrl: 'scripts/app/party/party.html',
-                        controller: 'MainController'
+                        controller: 'MyPartyController'
                     }
                 },
                 resolve: {

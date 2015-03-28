@@ -25,6 +25,7 @@ public class Party implements Serializable {
     @Column(name = "name")
     private String name;
 
+    @JsonIgnore
     @ManyToOne
     private User user;
 

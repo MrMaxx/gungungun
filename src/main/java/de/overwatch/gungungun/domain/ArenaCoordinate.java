@@ -34,6 +34,7 @@ public class ArenaCoordinate implements Serializable {
     @Column(name = "y")
     private Integer y;
 
+    @JsonIgnore
     @ManyToOne
     private Arena arena;
 

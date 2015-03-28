@@ -26,5 +26,10 @@
                                  referencedColumnNames="id"
                                  referencedTableName="T_HERO"/>
 
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/behavior.csv"
+                  separator=";"
+                  tableName="T_BEHAVIOR"/>
+
     </changeSet>
 </databaseChangeLog>

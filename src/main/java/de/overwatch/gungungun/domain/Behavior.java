@@ -31,6 +31,7 @@ public class Behavior implements Serializable {
     @Enumerated(EnumType.STRING)
     private HeuristicName heuristicName;
 
+    @JsonIgnore
     @ManyToOne
     private Hero hero;
 
