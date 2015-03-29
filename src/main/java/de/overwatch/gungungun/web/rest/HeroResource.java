@@ -2,7 +2,9 @@ package de.overwatch.gungungun.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import de.overwatch.gungungun.domain.Hero;
+import de.overwatch.gungungun.domain.TokenBlueprint;
 import de.overwatch.gungungun.repository.HeroRepository;
+import de.overwatch.gungungun.repository.TokenBlueprintRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -28,6 +30,9 @@ public class HeroResource {
     @Inject
     private HeroRepository heroRepository;
 
+    @Inject
+    private TokenBlueprintRepository tokenBlueprintRepository;
+
     /**
      * PUT  /heros -> Updates an existing hero.
      */
@@ -48,8 +53,12 @@ public class HeroResource {
         if (originalHero == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
+        TokenBlueprint blueprint = tokenBlueprintRepository.findOne(hero.getTokenBlueprint().getId());
+        if(blueprint == null){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
         originalHero.setName(hero.getName());
-        originalHero.setTokenBlueprint(hero.getTokenBlueprint());
+        originalHero.setTokenBlueprint(blueprint);
         heroRepository.save(originalHero);
         return ResponseEntity.ok().build();
     }

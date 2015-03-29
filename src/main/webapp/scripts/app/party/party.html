@@ -79,7 +79,7 @@
                         <div class="panel-body">
 
                             <ui-select ng-model="heuristicSelected[behavior.id]"
-                                       on-select="firstBehaviorSelected(hero.id, behavior.id, $item, $model)"
+                                       on-select="behaviorSelected(hero.id, behavior.id, $item, $model)"
                                        title="Choose a heuristic">
                                 <ui-select-match placeholder="Select a heuristic.">{{heuristicSelected[behavior.id].heuristicName}}</ui-select-match>
                                 <ui-select-choices repeat="heuristic in heuristics">

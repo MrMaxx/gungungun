@@ -37,7 +37,7 @@ public class BehaviorResource {
     /**
      * PUT  /behaviors -> Updates an existing behavior.
      */
-    @RequestMapping(value = "/behaviors/{id}",
+    @RequestMapping(value = "/behaviors",
         method = RequestMethod.PUT,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
@@ -45,26 +45,24 @@ public class BehaviorResource {
             @PathVariable("heroId")Long heroId,
             @PathVariable("partyId")Long partyId,
             @PathVariable("userId")Long userId,
-            @PathVariable("id")Long behaviorId,
-            @RequestParam(value = "heuristicName", required = true) String heuristicName,
-            @RequestParam(value = "priority", required = true) Integer priority
+            @RequestBody Behavior behavior
     ) throws URISyntaxException {
-        log.debug("REST request to update Behavior : id:{},name:{}", behaviorId, heuristicName);
+        log.debug("REST request to update Behavior : {}", behavior);
 
-        Behavior behavior = behaviorRepository.findOne(behaviorId);
-        if(behavior == null){
+        Behavior originalBehavior = behaviorRepository.findOne(behavior.getId());
+        if(originalBehavior == null){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
 
-        behavior.setPriority(priority);
-        behavior.setHeuristicName(HeuristicName.valueOf(heuristicName));
+        originalBehavior.setPriority(behavior.getPriority());
+        originalBehavior.setHeuristicName(behavior.getHeuristicName());
 
         Hero hero = heroRepository.findHero(heroId, partyId, userId);
         if(hero == null){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
 
-        behaviorRepository.save(behavior);
+        behaviorRepository.save(originalBehavior);
         return ResponseEntity.ok().build();
     }
 
