@@ -1,7 +1,8 @@
 'use strict';
 
-angular.module('gungungunApp', ['LocalStorageModule', 'tmh.dynamicLocale',
-    'ngResource', 'ui.router', 'ngCookies', 'pascalprecht.translate', 'ngCacheBuster', 'infinite-scroll', 'ui.select'])
+angular.module('gungungunApp', [
+    'LocalStorageModule', 'tmh.dynamicLocale', 'ngResource', 'ui.router', 'ngCookies',
+    'pascalprecht.translate', 'ngCacheBuster', 'infinite-scroll', 'ui.select', 'ngGrid'])
 
     .run(function ($rootScope, $location, $window, $http, $state, $translate, Auth, Principal, Language, ENV, VERSION) {
         $rootScope.ENV = ENV;

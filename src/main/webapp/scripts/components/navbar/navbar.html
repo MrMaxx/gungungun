@@ -29,6 +29,12 @@
                         <span translate="global.menu.party">Game</span>
                     </a>
                 </li>
+                <li ui-sref-active="active" ng-show="isInRole('ROLE_USER')">
+                    <a ui-sref="userlist">
+                        <span class="glyphicon glyphicon-tower"></span>
+                        <span translate="global.menu.userlist">Find Target</span>
+                    </a>
+                </li>
 
                 <li ng-class="{active: $state.includes('account')}" class="dropdown pointer">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="">

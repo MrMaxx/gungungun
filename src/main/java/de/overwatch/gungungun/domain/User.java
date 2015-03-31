@@ -61,6 +61,9 @@ public class User extends AbstractAuditingEntity implements Serializable {
     @Column(name = "activation_key", length = 20)
     private String activationKey;
 
+    @Column(nullable = false)
+    private Integer score;
+
     @JsonIgnore
     @ManyToMany
     @JoinTable(
@@ -76,6 +79,14 @@ public class User extends AbstractAuditingEntity implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Integer getScore() {
+        return score;
+    }
+
+    public void setScore(Integer score) {
+        this.score = score;
     }
 
     public String getLogin() {
@@ -184,6 +195,7 @@ public class User extends AbstractAuditingEntity implements Serializable {
                 ", activated='" + activated + '\'' +
                 ", langKey='" + langKey + '\'' +
                 ", activationKey='" + activationKey + '\'' +
+                ", score='" + score + '\'' +
                 "}";
     }
 }

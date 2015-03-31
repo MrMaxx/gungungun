@@ -8,6 +8,7 @@ import de.overwatch.gungungun.security.SecurityUtils;
 import de.overwatch.gungungun.service.MailService;
 import de.overwatch.gungungun.service.PartyService;
 import de.overwatch.gungungun.service.UserService;
+import de.overwatch.gungungun.service.ranking.UserRankingService;
 import de.overwatch.gungungun.web.rest.dto.UserDTO;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
@@ -45,6 +46,8 @@ public class AccountResource {
     @Inject
     private PartyService partyService;
 
+    @Inject
+    private UserRankingService userRankingService;
     /**
      * POST  /register -> register the user.
      */
@@ -70,6 +73,8 @@ public class AccountResource {
             request.getServerPort();           // "80"
 
             partyService.createDefaultParty(user.getId());
+
+            userRankingService.addUser(user);
 
             mailService.sendActivationEmail(user, baseUrl);
             return new ResponseEntity<>(HttpStatus.CREATED);

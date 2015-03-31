@@ -3,6 +3,7 @@ package de.overwatch.gungungun.web.rest;
 import de.overwatch.gungungun.Application;
 import de.overwatch.gungungun.repository.UserRepository;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.IntegrationTest;

@@ -6,6 +6,7 @@
             "home": "Home",
             "game": "Game",
             "party": "MyParty",
+            "userlist": "Find Target",
             "entities": {
                 "main": "Entities",
                 "tokenBlueprint": "TokenBlueprint",

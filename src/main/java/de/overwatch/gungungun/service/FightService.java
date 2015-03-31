@@ -8,6 +8,7 @@ import de.overwatch.gungungun.game.GameState;
 import de.overwatch.gungungun.game.GameStateFactory;
 import de.overwatch.gungungun.game.gameevent.GameEvent;
 import de.overwatch.gungungun.repository.FightRepository;
+import org.joda.time.DateTime;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -37,6 +38,7 @@ public class FightService {
             List<GameEvent> resultingEvents = gameEngine.calculateGame(gameState);
             String eventJson = gson.toJson(resultingEvents);
             fight.setResultingEvents(eventJson);
+            fight.setProcessedAt(new DateTime());
 
         }
 

@@ -4,13 +4,12 @@ import com.codahale.metrics.annotation.Timed;
 import de.overwatch.gungungun.domain.User;
 import de.overwatch.gungungun.repository.UserRepository;
 import de.overwatch.gungungun.security.AuthoritiesConstants;
+import de.overwatch.gungungun.service.ranking.PagedUserList;
+import de.overwatch.gungungun.service.ranking.UserRankingService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
@@ -29,16 +28,30 @@ public class UserResource {
     @Inject
     private UserRepository userRepository;
 
+    @Inject
+    private UserRankingService userRankingService;
+
     /**
      * GET  /users -> get all users.
      */
     @RequestMapping(value = "/users",
-        method = RequestMethod.GET,
-        produces = MediaType.APPLICATION_JSON_VALUE)
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public List<User> getAll() {
-        log.debug("REST request to get all Users");
-        return userRepository.findAll();
+    public @ResponseBody PagedUserList getAll(
+            @RequestParam(required = false) Integer pagesize,
+            @RequestParam(required = false) Integer page,
+            @RequestParam(required = false) Long userId) {
+
+        if(page == null){ page = 1; }
+        if(pagesize == null){ pagesize = 30; }
+
+
+        if(userId != null){
+            return userRankingService.getUserRanking(userId, pagesize);
+        }
+
+        return userRankingService.getUserPage(page, pagesize);
     }
 
     /**
