@@ -11,9 +11,17 @@ angular.module('gungungunApp')
                 },
                 views: {
                     'content@': {
-                        templateUrl: 'scripts/app/userlist/userlist.html',
+                        templateUrl: 'scripts/app/userlist/userlist.html'
+                    },
+                    'usersInRange@userlist': {
+                        templateUrl: 'scripts/app/userlist/userlist.userranking.html',
                         controller: 'UserListController'
+                    },
+                    'fights@userlist': {
+                        templateUrl: 'scripts/app/userlist/userlist.fights.html',
+                        controller: 'UserFightsController'
                     }
+
                 },
                 resolve: {
                     mainTranslatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate,$translatePartialLoader) {

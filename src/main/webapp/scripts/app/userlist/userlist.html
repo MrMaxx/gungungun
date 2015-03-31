@@ -1,18 +1,6 @@
 <div ng-cloak>
     <div class="row">
-        <div class="md-col-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    Find a target
-                </div>
-
-                <div class="panel-body">
-                    <p>Find a target and crush it...</p>
-                </div>
-
-                <div style="height: 540px;" ng-grid="userInRangeOptions"></div>
-
-            </div>
-        </div>
+        <div class="col-md-6" ui-view="usersInRange"></div>
+        <div class="col-md-6" ui-view="fights"></div>
     </div>
 </div>

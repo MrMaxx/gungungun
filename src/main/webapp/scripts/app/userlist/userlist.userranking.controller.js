@@ -2,7 +2,7 @@
 
 angular.module('gungungunApp')
     .controller('UserListController', function (
-        $scope, Principal, UserRankingService) {
+        $scope, Principal, UserRankingService, UserFightService) {
 
         Principal.identity().then(function(account) {
             $scope.account = account;
@@ -50,14 +50,12 @@ angular.module('gungungunApp')
             });
         };
 
-
-
         $scope.attack = function(row){
             Logger.info("tried to create a fight for row = "+row);
-            /*
-            FightService.createFight(row.entity.id).then(function(fight){
+
+             UserFightService.createFight($scope.account.id, row.entity.id).then(function(fight){
                 $rootScope.$broadcast('Fight:created');
-            });*/
+            });
         };
 
         $scope.$watch('pagingOptions', function (newVal, oldVal) {
