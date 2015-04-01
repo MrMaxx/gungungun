@@ -23,6 +23,7 @@
             </column>
             <column name="resulting_events" type="text"/>
             <column name="arena_id" type="bigint"/>
+            <column name="winner_id" type="bigint"/>
         </createTable>
         <dropDefaultValue tableName="T_FIGHT" columnName="created_at" columnDataType="datetime"/>
 
@@ -51,12 +52,18 @@
                                  constraintName="fk_party_participatingparty_fight_id"
                                  referencedColumnNames="id"
                                  referencedTableName="T_PARTY"/>
-        
+
         <addForeignKeyConstraint baseColumnNames="arena_id"
                                  baseTableName="T_FIGHT"
                                  constraintName="fk_fight_arena_id"
                                  referencedColumnNames="id"
                                  referencedTableName="T_ARENA"/>
+
+        <addForeignKeyConstraint baseColumnNames="winner_id"
+                                 baseTableName="T_FIGHT"
+                                 constraintName="fk_fight_winner_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="T_USER"/>
 
         <loadData encoding="UTF-8"
                   file="config/liquibase/fight.csv"

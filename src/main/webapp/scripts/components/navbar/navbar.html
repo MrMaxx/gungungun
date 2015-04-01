@@ -17,21 +17,15 @@
                         <span translate="global.menu.home">Home</span>
                     </a>
                 </li>
-                <li ui-sref-active="active">
-                    <a ui-sref="game">
-                        <span class="glyphicon glyphicon-tower"></span>
-                        <span translate="global.menu.game">Game</span>
-                    </a>
-                </li>
                 <li ui-sref-active="active" ng-show="isInRole('ROLE_USER')">
                     <a ui-sref="myparty">
                         <span class="glyphicon glyphicon-tower"></span>
-                        <span translate="global.menu.party">Game</span>
+                        <span translate="global.menu.party">Party</span>
                     </a>
                 </li>
                 <li ui-sref-active="active" ng-show="isInRole('ROLE_USER')">
                     <a ui-sref="userlist">
-                        <span class="glyphicon glyphicon-tower"></span>
+                        <span class="glyphicon glyphicon-user"></span>
                         <span translate="global.menu.userlist">Find Target</span>
                     </a>
                 </li>

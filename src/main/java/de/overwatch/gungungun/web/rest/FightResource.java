@@ -9,6 +9,9 @@ import de.overwatch.gungungun.repository.ArenaRepository;
 import de.overwatch.gungungun.repository.FightRepository;
 import de.overwatch.gungungun.repository.PartyRepository;
 import de.overwatch.gungungun.repository.UserRepository;
+import de.overwatch.gungungun.service.FightService;
+import de.overwatch.gungungun.service.fight.PublicFight;
+import de.overwatch.gungungun.service.fight.PublicFightService;
 import de.overwatch.gungungun.web.rest.util.PaginationUtil;
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
@@ -38,6 +41,8 @@ public class FightResource {
 
     @Inject
     private FightRepository fightRepository;
+    @Inject
+    private PublicFightService publicFightService;
     @Inject
     private ArenaRepository arenaRepository;
     @Inject
@@ -80,6 +85,18 @@ public class FightResource {
         return ResponseEntity.created(new URI("/api/fights/" + fight.getId())).build();
     }
 
+    /**
+     * GET  /fights -> get all the fights a user took part in
+     */
+    @RequestMapping(value = "/users/{userId}/fights",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<List<PublicFight>> getPublicFights(
+            @PathVariable(value = "userId") Long userId)
+            throws URISyntaxException {
+        return new ResponseEntity<List<PublicFight>>(publicFightService.getFights(userId), HttpStatus.OK);
+    }
 
     /**
      * GET  /fights -> get all the fights.
@@ -88,8 +105,9 @@ public class FightResource {
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<List<Fight>> getAll(@RequestParam(value = "page" , required = false) Integer offset,
-                                  @RequestParam(value = "per_page", required = false) Integer limit)
+    public ResponseEntity<List<Fight>> getAll(
+            @RequestParam(value = "page" , required = false) Integer offset,
+            @RequestParam(value = "per_page", required = false) Integer limit)
         throws URISyntaxException {
         Page<Fight> page = fightRepository.findAll(PaginationUtil.generatePageRequest(offset, limit));
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/fights", offset, limit);
@@ -110,6 +128,19 @@ public class FightResource {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(fight, HttpStatus.OK);
+    }
+
+    @RequestMapping(value="/fights/{id}/events",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public @ResponseBody String events(@PathVariable("id") Long id) {
+
+        Fight fight = fightRepository.findOne(id);
+
+        if(fight==null){ return null; }
+
+        return fight.getResultingEvents();
     }
 
 }

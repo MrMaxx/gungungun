@@ -35,12 +35,10 @@ public class GameEngine {
     @Inject
     private GameMoveExecutor gameMoveExecutor;
 
-    public List<GameEvent> calculateGame(GameState gameState){
-
-        List<GameEvent> gameEvents = new LinkedList<>();
+    public void calculateGame(GameState gameState){
 
         for(HeroToken token: gameState.getHeroes()){
-            gameEvents.add(new TokenSpawnedEvent(token));
+            gameState.addGameEvent(new TokenSpawnedEvent(token));
         }
 
         // we need some termination
@@ -71,20 +69,20 @@ public class GameEngine {
                     log.debug("Best GameMove: {}", bestMove);
 
                     List<GameEvent> resultingGameEvents = gameMoveExecutor.execute(gameState, heroToken, bestMove);
-                    gameEvents.addAll(resultingGameEvents);
+                    gameState.addGameEvents(resultingGameEvents);
 
                     log.debug("Resulting GameEvents: {}", resultingGameEvents);
                     // if only one Party is left we have to end the game
                     if(gameState.isOnlyOnePartyLeft()){
-                        gameEvents.add(new GameEndedEvent());
-                        return gameEvents;
+                        gameState.addGameEvent(new GameEndedEvent());
+                        gameState.setWinningPartyId(gameState.getHeroes().iterator().next().getPartyId());
+                        return;
                     }
                 }
             }
-            gameEvents.add(new RoundEndedEvent(gameState.getRound()));
+            gameState.addGameEvent(new RoundEndedEvent(gameState.getRound()));
             gameState.nextRound();
         }
-        return gameEvents;
     }
 
 }

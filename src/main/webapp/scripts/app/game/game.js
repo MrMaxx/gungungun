@@ -5,7 +5,7 @@ angular.module('gungungunApp')
         $stateProvider
             .state('game', {
                 parent: 'site',
-                url: '/game',
+                url: '/game/:fightId',
                 data: {
                     roles: []
                 },

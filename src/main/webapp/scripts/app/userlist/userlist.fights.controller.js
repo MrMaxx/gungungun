@@ -15,10 +15,21 @@ angular.module('gungungunApp')
 
         $scope.initializeController = function(){
             UserFightService.getFights($scope.account.id).then(function(fights){
-                angular.forEach(fights, function(fight, index){
-                    fight['hasWon'] = ($scope.account.id == fight.attackingUserId && fight.outcome == 'ATTACKER_WON')
-                        || ($scope.account.is == fight.defendingingUserId && fight.outcome == 'DEFENDER_WON');
+                angular.forEach(fights, function(fight){
+                    fight['hasWon'] = ($scope.account.id == fight.winner.id);
+                    fight['participants'] = '';
+                    var count = 0;
+                    angular.forEach(fight.participatingUser, function(participant, index){
+                        if(count != 0){
+                            fight['participants'] = ', '+fight['participants'];
+                        }
+                        if($scope.account.id != participant.id){
+                            fight['participants'] = fight['participants']+participant.userName;
+                            count = count +1;
+                        }
+                    });
                 });
+
                 $scope.fights = fights;
             });
         };
@@ -34,17 +45,14 @@ angular.module('gungungunApp')
             data: 'fights',
             columnDefs: [
                 {
-                    field:'fightState',
+                    field:'hasWon',
                     displayName:'state',
                     width:50,
                     cellTemplate: '' +
-                        '<div class="ngCellText" ng-class="col.colIndex()">' +
+                        '<div class="ngCellText" ng-class="col.colIndex()" style="text-align: center;">' +
                         '   <span ng-cell-text>' +
-                        '       <i style="{{row.getProperty(\'hasWon\') && row.getProperty(\'outcome\')==\'ATTACKER_WON\'?\'\':\'display:none;\'}};color:green;font-weight:bold;" class="fa fa-plus-square"></i>' +
-                        '       <i style="{{!row.getProperty(\'hasWon\') && row.getProperty(\'outcome\')==\'ATTACKER_WON\'?\'\':\'display:none;\'}};color:red;font-weight:bold;" class="fa fa-plus-square"></i>' +
-                        '       <i style="{{row.getProperty(\'hasWon\') && row.getProperty(\'outcome\')==\'DEFENDER_WON\'?\'\':\'display:none;\'}};color:green;font-weight:bold;" class="fa fa-minus-square"></i>' +
-                        '       <i style="{{!row.getProperty(\'hasWon\') && row.getProperty(\'outcome\')==\'DEFENDER_WON\'?\'\':\'display:none;\'}};color:red;font-weight:bold;" class="fa fa-minus-square"></i>' +
-                        '       <i style="{{!row.getProperty(\'outcome\')?\'\':\'display:none;\'}};font-weight:bold;" class="fa fa-spinner fa-spin"></i>' +
+                        '       <span style="{{row.getProperty(\'hasWon\')?\'\':\'display:none;\'}}color:green;" class="glyphicon glyphicon-plus"></span>' +
+                        '       <span style="{{!row.getProperty(\'hasWon\')?\'\':\'display:none;\'}};color:red;" class="glyphicon glyphicon-minus"></span>' +
                         '   </span>' +
                         '</div>'
                 },
@@ -57,15 +65,14 @@ angular.module('gungungunApp')
                         '  <span ng-cell-text>{{row.getProperty(col.field) | date:\'dd.MM HH:mm\'}}</span>' +
                         '</div>'
                 },
-                {field:'attackingUserName', displayName:'Attacker'},
-                {field:'defendingUserName', displayName:'Defender'},
+                {field:'participants', displayName:'Participants'},
                 {
                     displayName:'',
                     width:50,
                     cellTemplate:'' +
                         '<div style="padding-left:15px;padding-top:4px;">' +
-                        '   <a target="_blank" href="gameclient/index.html?userId={{account.id}}&fightId={{row.getProperty(\'id\')}}&access_token={{accessToken}}" style="display:{{row.getProperty(\'outcome\')?\'block\':\'none\'}};">' +
-                        '       <i style="font-size:20px;font-weight:bold;" class="fa fa-eye"></i>' +
+                        '   <a ui-sref="game({fightId:{{row.getProperty(\'id\')}}})">' +
+                        '       <span aria-hidden="true" class="glyphicon glyphicon-play"></span>' +
                         '   </a>' +
                         '</div>'
                 }

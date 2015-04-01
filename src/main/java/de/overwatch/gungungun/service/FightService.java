@@ -3,6 +3,7 @@ package de.overwatch.gungungun.service;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import de.overwatch.gungungun.domain.Fight;
+import de.overwatch.gungungun.domain.Party;
 import de.overwatch.gungungun.game.GameEngine;
 import de.overwatch.gungungun.game.GameState;
 import de.overwatch.gungungun.game.GameStateFactory;
@@ -35,10 +36,20 @@ public class FightService {
         for(Fight fight: openFights){
 
             GameState gameState = gameStateFactory.createGameState(fight);
-            List<GameEvent> resultingEvents = gameEngine.calculateGame(gameState);
-            String eventJson = gson.toJson(resultingEvents);
+            gameEngine.calculateGame(gameState);
+            String eventJson = gson.toJson(gameState.getGameEvents());
             fight.setResultingEvents(eventJson);
             fight.setProcessedAt(new DateTime());
+            if(gameState.getWinningPartyId() != null){
+                Party winner = null;
+                for(Party party: fight.getParticipatingPartys()){
+                    if(party.getId().equals(gameState.getWinningPartyId())){
+                        winner = party;
+                        break;
+                    }
+                }
+                fight.setWinner(winner);
+            }
 
         }
 

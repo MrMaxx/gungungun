@@ -51,6 +51,10 @@ public class Fight implements Serializable {
     private Set<Party> participatingPartys = new HashSet<>();
 
     @ManyToOne
+    @JoinColumn(name = "winner_id", nullable = true)
+    private Party winner;
+
+    @ManyToOne
     private Arena arena;
 
     public Long getId() {
@@ -59,6 +63,14 @@ public class Fight implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Party getWinner() {
+        return winner;
+    }
+
+    public void setWinner(Party winner) {
+        this.winner = winner;
     }
 
     public DateTime getCreatedAt() {
