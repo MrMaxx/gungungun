@@ -5,6 +5,9 @@ import de.overwatch.gungungun.game.model.Coordinate;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.Collection;
+import java.util.HashSet;
+
 public class DirectionTest {
 
 
@@ -30,10 +33,16 @@ public class DirectionTest {
     }
 
     @Test
-    public void testGetDirectionTowerdsoordinateIsSouth(){
-        Coordinate source = new Coordinate(5,5);
-        Coordinate target = new Coordinate(5,10);
-        Assert.assertEquals(Direction.SOUTH, Direction.getDirectionTowardsCoordinate(source, target));
+    public void testGetDirection45Deg(){
+        Collection<Direction> directions = new HashSet<>();
+        directions.add(Direction.SOUTH);
+        directions.add(Direction.EAST);
+
+        Direction calculatedDirection = Direction.getDirectionTowardsCoordinate(new Coordinate(5,5), new Coordinate(6,6));
+
+        Assert.assertTrue(directions.contains(calculatedDirection));
     }
+
+
 
 }

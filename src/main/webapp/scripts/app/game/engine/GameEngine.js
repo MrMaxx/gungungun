@@ -1,9 +1,9 @@
-function GameEngine(events, stage) {
+function GameEngine(events, arenaName, stage) {
     var self = this;
     this.ready = false;
     this.initialized = false;
     this.browser = $(document);
-
+    this.arenaName = arenaName;
     this.stage = stage;
 
     this.events = events;
@@ -16,7 +16,7 @@ function GameEngine(events, stage) {
         var objectLayer = new Konva.Layer({id: 'objects'});
 
         var background = new Konva.Image({
-            image: Konva.Assets.STAND_YOUR_GROUND,
+            image: Konva.Assets[self.arenaName],
             width: 1000,
             height: 680
         });

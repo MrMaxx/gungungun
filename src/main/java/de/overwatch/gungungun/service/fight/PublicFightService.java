@@ -24,4 +24,10 @@ public class PublicFightService {
         return result;
     }
 
+    public PublicFight getFight(Long fightId){
+        Fight fight = fightRepository.findOneWithEagerRelationships(fightId);
+        if(fight == null){return null;}
+        return new PublicFight(fight);
+    }
+
 }

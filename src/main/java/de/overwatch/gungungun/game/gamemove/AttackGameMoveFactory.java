@@ -21,7 +21,7 @@ public class AttackGameMoveFactory implements GameMoveFactory{
                     // everything costs 1 ActionPoint for now, if you dont have it your fucked
                     && heroToken.getActionsLeft() > 0
                     // is the other Token in Range of my Weapon
-                    && heroToken.getShortRangeAttackRange() >= heroToken.getCoordinate().getDistance(otherToken.getCoordinate())){
+                    && heroToken.getShortRangeAttackRange() >= heroToken.getCoordinate().getDistanceInFields(otherToken.getCoordinate())){
                 AttackGameMove am = new AttackGameMove(otherToken);
                 // Turn around if needed
                 if(!heroToken.getCoordinate().isIn45Degree(heroToken.getDirection(), otherToken.getCoordinate())){

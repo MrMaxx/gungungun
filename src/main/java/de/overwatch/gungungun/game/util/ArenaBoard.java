@@ -137,7 +137,7 @@ public class ArenaBoard implements Serializable{
 				CoordinateWithFirstNeighbor startPoint = notVisitedCoordinates.poll();
 				Map<Coordinate, Coordinate> targets = shortestPaths.get( coordinate );
 				if( targets == null ){
-					targets = new HashMap<Coordinate, Coordinate>();
+					targets = new HashMap<>();
 					shortestPaths.put( coordinate, targets );
 				}
 				targets.put( startPoint.getCoordinate(), startPoint.getFirstNeighbor() );
@@ -151,14 +151,14 @@ public class ArenaBoard implements Serializable{
 		
 	}
 	private void addInitialNeighbors( Queue<CoordinateWithFirstNeighbor> notVisitedCoordinates, Coordinate initialCoordinate ){
-		addInitialNeighbor( notVisitedCoordinates, new CoordinateWithFirstNeighbor( initialCoordinate.getCoordinateSouthOf(), initialCoordinate.getCoordinateSouthOf() ) );
-		addInitialNeighbor( notVisitedCoordinates, new CoordinateWithFirstNeighbor( initialCoordinate.getCoordinateEastOf(), initialCoordinate.getCoordinateEastOf() ) );
-		addInitialNeighbor( notVisitedCoordinates, new CoordinateWithFirstNeighbor( initialCoordinate.getCoordinateNorthOf(), initialCoordinate.getCoordinateNorthOf() ) );
-		addInitialNeighbor( notVisitedCoordinates, new CoordinateWithFirstNeighbor( initialCoordinate.getCoordinateWestOf(), initialCoordinate.getCoordinateWestOf() ) );
 		addInitialNeighbor( notVisitedCoordinates, new CoordinateWithFirstNeighbor( initialCoordinate.getCoordinateSouthEastOf(), initialCoordinate.getCoordinateSouthEastOf() ) );
 		addInitialNeighbor( notVisitedCoordinates, new CoordinateWithFirstNeighbor( initialCoordinate.getCoordinateSouthWestOf(), initialCoordinate.getCoordinateSouthWestOf() ) );
 		addInitialNeighbor( notVisitedCoordinates, new CoordinateWithFirstNeighbor( initialCoordinate.getCoordinateNorthEastOf(), initialCoordinate.getCoordinateNorthEastOf() ) );
 		addInitialNeighbor( notVisitedCoordinates, new CoordinateWithFirstNeighbor( initialCoordinate.getCoordinateNorthWestOf(), initialCoordinate.getCoordinateNorthWestOf() ) );
+        addInitialNeighbor( notVisitedCoordinates, new CoordinateWithFirstNeighbor( initialCoordinate.getCoordinateSouthOf(), initialCoordinate.getCoordinateSouthOf() ) );
+        addInitialNeighbor( notVisitedCoordinates, new CoordinateWithFirstNeighbor( initialCoordinate.getCoordinateEastOf(), initialCoordinate.getCoordinateEastOf() ) );
+        addInitialNeighbor( notVisitedCoordinates, new CoordinateWithFirstNeighbor( initialCoordinate.getCoordinateNorthOf(), initialCoordinate.getCoordinateNorthOf() ) );
+        addInitialNeighbor( notVisitedCoordinates, new CoordinateWithFirstNeighbor( initialCoordinate.getCoordinateWestOf(), initialCoordinate.getCoordinateWestOf() ) );
 	}
 	private void addInitialNeighbor( Queue<CoordinateWithFirstNeighbor> notVisitedCoordinates, CoordinateWithFirstNeighbor toAdd ){
 		if( ! this.isCoordinateBlockingMovement( toAdd.getCoordinate() )){
@@ -176,15 +176,15 @@ public class ArenaBoard implements Serializable{
 	}
 	private List<Coordinate> getCoordinatesInRightOrder( Coordinate start ){
 		List<Coordinate> result = new LinkedList<Coordinate>();
-		result.add( start.getCoordinateSouthOf() );
-		result.add( start.getCoordinateEastOf() );
-		result.add( start.getCoordinateNorthOf() );
-		result.add( start.getCoordinateWestOf() );
 		result.add( start.getCoordinateSouthEastOf() );
 		result.add( start.getCoordinateSouthWestOf() );
 		result.add( start.getCoordinateNorthEastOf() );
 		result.add( start.getCoordinateNorthWestOf() );
-		
+        result.add( start.getCoordinateSouthOf() );
+        result.add( start.getCoordinateEastOf() );
+        result.add( start.getCoordinateNorthOf() );
+        result.add( start.getCoordinateWestOf() );
+
 		return result;
 	}
 	

@@ -18,6 +18,12 @@ public class ActiveBehavior {
         this.priority = behavior.getPriority();
     }
 
+    public ActiveBehavior(HeuristicName heuristicName, int priority) {
+        this.heuristicName = heuristicName;
+
+        this.priority = priority;
+    }
+
     public HeuristicName getHeuristicName() {
         return heuristicName;
     }

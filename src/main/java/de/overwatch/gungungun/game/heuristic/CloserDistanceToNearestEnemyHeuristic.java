@@ -16,6 +16,7 @@ public class CloserDistanceToNearestEnemyHeuristic extends AbstractHeuristic {
 
         try{
             List<Coordinate> path = getPathToNearestHeroToken(gameState, heroToken, gameMove);
+            if(path == null){return 0;}
             float score = 1 - (0.05f * (path.size()-1));
             if(score < 0 ){
                 return 0;

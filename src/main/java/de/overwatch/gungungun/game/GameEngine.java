@@ -49,6 +49,10 @@ public class GameEngine {
                     log.debug("### Omitting dead HeroToken with ID = {}", heroToken.getId());
                     continue;
                 }
+                if(!gameMoveEvaluator.hasValidBehaviors(heroToken)){
+                    log.debug("### Omitting HeroToken without defined behaviors and with ID = {}", heroToken.getId());
+                    continue;
+                }
                 log.debug("### Processing HeroToken with ID = {}", heroToken.getId());
                 while(heroToken.getActionsLeft() > 0){
                     log.debug("### HeroToken has {} actions left.", heroToken.getActionsLeft());

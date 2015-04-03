@@ -121,9 +121,9 @@ public class FightResource {
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<Fight> get(@PathVariable Long id, HttpServletResponse response) {
+    public ResponseEntity<PublicFight> get(@PathVariable Long id, HttpServletResponse response) {
         log.debug("REST request to get Fight : {}", id);
-        Fight fight = fightRepository.findOneWithEagerRelationships(id);
+        PublicFight fight = publicFightService.getFight(id);
         if (fight == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

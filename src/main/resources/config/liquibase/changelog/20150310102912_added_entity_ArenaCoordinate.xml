@@ -29,7 +29,15 @@
                                  referencedTableName="T_ARENA"/>
 
         <loadData encoding="UTF-8"
-                  file="config/liquibase/arenaCoordinate.csv"
+                  file="config/liquibase/arenaCoordinate_1.csv"
+                  separator=";"
+                  tableName="T_ARENACOORDINATE"/>
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/arenaCoordinate_2.csv"
+                  separator=";"
+                  tableName="T_ARENACOORDINATE"/>
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/arenaCoordinate_3.csv"
                   separator=";"
                   tableName="T_ARENACOORDINATE"/>
 

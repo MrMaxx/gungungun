@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('gungungunApp')
-    .controller('GameController', function ($scope, $http, $stateParams, Principal, Fight) {
+    .controller('GameController', function ($scope, $http, $stateParams, Principal, UserFightService) {
         Principal.identity().then(function(account) {
             $scope.account = account;
             $scope.isAuthenticated = Principal.isAuthenticated;
@@ -16,12 +16,17 @@ angular.module('gungungunApp')
 
             $http.get('/api/fights/'+$scope.fightId+'/events').
                 success(function(data) {
-                    var loader = new Konva.Loader(config.assets);
-                    loader.onComplete(function(){
-                        var game = new GameEngine(data, stage);
-                        game.run();
+
+                    UserFightService.getFight($scope.fightId).then(function(fight){
+                        var loader = new Konva.Loader(config.assets);
+                        loader.onComplete(function(){
+                            var game = new GameEngine(data, fight.arena.arenaKey, stage);
+                            game.run();
+                        });
+                        loader.load();
                     });
-                    loader.load();
+
+
                 });
 
         });

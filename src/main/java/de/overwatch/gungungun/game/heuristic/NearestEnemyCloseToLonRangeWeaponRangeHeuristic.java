@@ -18,7 +18,7 @@ public class NearestEnemyCloseToLonRangeWeaponRangeHeuristic extends AbstractHeu
 
         if( ! gameState.getArenaBoard().isLOSFreeToTarget(coordinateToTest, nearestEnemy.getCoordinate())){ return 0; }
 
-        int distance = coordinateToTest.getDistance(nearestEnemy.getCoordinate());
+        int distance = coordinateToTest.getDistanceInFields(nearestEnemy.getCoordinate());
 
         int deviation = Math.abs(heroToken.getLongRangeAttackRange() - distance);
 

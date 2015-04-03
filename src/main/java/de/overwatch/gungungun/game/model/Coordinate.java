@@ -48,11 +48,17 @@ public class Coordinate {
         return false;
     }
 
-    public int getDistance(Coordinate other){
+    public int getDistanceInFields(Coordinate other){
         int absX = Math.abs(this.getX() - other.getX());
         int absY = Math.abs(this.getY() - other.getY());
         if(absX>absY) return absX;
         return absY;
+    }
+
+    public double getDistance(Coordinate other){
+        int x = this.getX() - other.getX();
+        int y = this.getY() - other.getY();
+        return Math.sqrt((x*x) + (y*y));
     }
 
     public List<Coordinate> getXFrontFieldRows( Direction d, int rowCount){

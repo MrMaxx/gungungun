@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 import javax.inject.Inject;
 import java.util.Collection;
 import java.util.LinkedList;
-import java.util.List;
 
 @Component
 public class GameMoveEvaluator {
@@ -19,10 +18,22 @@ public class GameMoveEvaluator {
     private HeuristicStore heuristicStore;
 
 
+    public boolean hasValidBehaviors(HeroToken heroToken){
+        for (ActiveBehavior behavior : heroToken.getBehaviors()) {
+            if(behavior.getHeuristicName() != HeuristicName.NONE){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void evaluateGameMoves(GameState gameState, HeroToken heroToken, Collection<GameMove> gameMoves){
+        Collection<ActiveBehavior> behaviors = new LinkedList<>();
+        behaviors.addAll(heroToken.getBehaviors());
+        behaviors.add(new ActiveBehavior(HeuristicName.DIRECT_DISTANCE_IS_BETTER, 100));
 
         for(GameMove gameMove: gameMoves) {
-            for (ActiveBehavior behavior : heroToken.getBehaviors()) {
+            for (ActiveBehavior behavior : behaviors) {
                 AbstractHeuristic heuristic = heuristicStore.getHeuristicByName(behavior.getHeuristicName());
                 gameMove.addBaseScore(
                         heuristic.evaluate(gameState, heroToken, gameMove),

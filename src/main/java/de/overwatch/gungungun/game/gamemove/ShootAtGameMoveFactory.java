@@ -21,7 +21,7 @@ public class ShootAtGameMoveFactory implements GameMoveFactory{
                     // everything costs 1 ActionPoint for now, if you dont have it your fucked
                     && heroToken.getActionsLeft() > 0
                     // is the other Token in Range of my Weapon
-                    && heroToken.getLongRangeAttackRange() >= heroToken.getCoordinate().getDistance(otherToken.getCoordinate())
+                    && heroToken.getLongRangeAttackRange() >= heroToken.getCoordinate().getDistanceInFields(otherToken.getCoordinate())
                     // is there a free LOS
                     && gameState.getArenaBoard().isLOSFreeToTarget(heroToken.getCoordinate(), otherToken.getCoordinate()) ){
                 ShootAtGameMove sm = new ShootAtGameMove(otherToken);

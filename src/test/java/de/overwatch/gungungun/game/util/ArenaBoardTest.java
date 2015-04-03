@@ -117,7 +117,7 @@ public class ArenaBoardTest {
 		List<Coordinate> shortPath2 = arenaBoard.getShortestPath( new Coordinate(7,6), new Coordinate(6,2) );
 		
 		//Assert.assertEquals( new Coordinate(7,6), shortPath2.get( 0 ) );
-		Assert.assertEquals(new Coordinate(7, 5), shortPath2.get(0));
+		Assert.assertEquals(new Coordinate(8, 5), shortPath2.get(0));
 		Assert.assertEquals(new Coordinate(8, 4), shortPath2.get(1));
 		Assert.assertEquals(new Coordinate(7, 3), shortPath2.get(2));
 		Assert.assertEquals(new Coordinate(6, 2), shortPath2.get(3));

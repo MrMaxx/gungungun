@@ -40,7 +40,7 @@
 
                                 <label>Type</label>
                                 <ui-select ng-model="tokenBlueprintSelected[hero.id]"
-                                           on-select="typeSelected($item, $model)"
+                                           on-select="typeSelected(hero.id, $item, $model)"
                                            title="Choose a Type">
                                     <ui-select-match placeholder="Select a type for the Hero.">{{tokenBlueprintSelected[hero.id].tokenKey}}</ui-select-match>
                                     <ui-select-choices repeat="tokenBlueprint in tokenBlueprints">

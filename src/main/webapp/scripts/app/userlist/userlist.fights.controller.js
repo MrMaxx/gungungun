@@ -2,7 +2,7 @@
 
 angular.module('gungungunApp')
     .controller('UserFightsController', function (
-        $scope, Principal, UserFightService) {
+        $scope, $interval, Principal, UserFightService) {
 
         Principal.identity().then(function(account) {
             $scope.account = account;
@@ -16,7 +16,13 @@ angular.module('gungungunApp')
         $scope.initializeController = function(){
             UserFightService.getFights($scope.account.id).then(function(fights){
                 angular.forEach(fights, function(fight){
-                    fight['hasWon'] = ($scope.account.id == fight.winner.id);
+                    // initially a fight has no winner
+                    if(fight.winner){
+                        fight['processed'] = true;
+                        fight['hasWon'] = ($scope.account.id == fight.winner.id);
+                    }else{
+                        fight['processed'] = false;
+                    }
                     fight['participants'] = '';
                     var count = 0;
                     angular.forEach(fight.participatingUser, function(participant, index){
@@ -38,7 +44,7 @@ angular.module('gungungunApp')
             $scope.initializeController();
             $interval(function(){
                 $scope.initializeController();
-            },30000);
+            }, 10000, 1);
         });
 
         $scope.fightsOptions = {
@@ -51,8 +57,8 @@ angular.module('gungungunApp')
                     cellTemplate: '' +
                         '<div class="ngCellText" ng-class="col.colIndex()" style="text-align: center;">' +
                         '   <span ng-cell-text>' +
-                        '       <span style="{{row.getProperty(\'hasWon\')?\'\':\'display:none;\'}}color:green;" class="glyphicon glyphicon-plus"></span>' +
-                        '       <span style="{{!row.getProperty(\'hasWon\')?\'\':\'display:none;\'}};color:red;" class="glyphicon glyphicon-minus"></span>' +
+                        '       <span style="{{row.getProperty(\'processed\') && row.getProperty(\'hasWon\') ?\'\':\'display:none;\'}}color:green;" class="glyphicon glyphicon-plus"></span>' +
+                        '       <span style="{{row.getProperty(\'processed\') && !row.getProperty(\'hasWon\')?\'\':\'display:none;\'}};color:red;" class="glyphicon glyphicon-minus"></span>' +
                         '   </span>' +
                         '</div>'
                 },
@@ -66,12 +72,13 @@ angular.module('gungungunApp')
                         '</div>'
                 },
                 {field:'participants', displayName:'Participants'},
+                {field:'arena.arenaKey', displayName:'Arena'},
                 {
                     displayName:'',
                     width:50,
                     cellTemplate:'' +
                         '<div style="padding-left:15px;padding-top:4px;">' +
-                        '   <a ui-sref="game({fightId:{{row.getProperty(\'id\')}}})">' +
+                        '   <a style="{{row.getProperty(\'processed\')?\'\':\'display:none;\'}};padding-left:0px;" ui-sref="game({fightId:{{row.getProperty(\'id\')}}})">' +
                         '       <span aria-hidden="true" class="glyphicon glyphicon-play"></span>' +
                         '   </a>' +
                         '</div>'

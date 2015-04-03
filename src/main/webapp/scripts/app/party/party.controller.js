@@ -57,9 +57,9 @@ angular.module('gungungunApp')
             {heuristicName: 'GOOD_SHOOTING_POSITION'},
             {heuristicName: 'CLOSER_DISTANCE_TO_NEAREST_ENEMY'},
             {heuristicName: 'CLOSE_TO_LONG_RANGE_WEAPON_RANGE'},
-            {heuristicName: 'SHOOTING_IS_GOOD'}
+            {heuristicName: 'SHOOTING_IS_GOOD'},
+            {heuristicName: 'ATTACKING_IS_GOOD'}
         ];
-
 
         $scope.behaviorSelected = function(heroId, behaviorId, item, model){
             $scope.heuristicSelected[behaviorId].heuristicName = item.heuristicName;

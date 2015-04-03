@@ -38,8 +38,22 @@ angular
 
             return deferred.promise;
         }
+        function getFight(fightId) {
+            var deferred = $q.defer();
+
+            $log.debug('FightService: getting Fight with id:'+fightId);
+            $http({
+                method: 'GET',
+                url: '/api/fights/'+fightId
+            }).then(function(response){
+                deferred.resolve(response.data);
+            });
+
+            return deferred.promise;
+        }
         return {
             getFights: getFights,
+            getFight: getFight,
             createFight:createFight
         }
     });

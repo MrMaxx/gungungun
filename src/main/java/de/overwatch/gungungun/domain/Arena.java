@@ -25,10 +25,12 @@ public class Arena implements Serializable {
     @Column(name = "arena_key")
     private String arenaKey;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "arena")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<ArenaCoordinate> arenaCoordinates = new HashSet<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "arena")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<SpawnPoint> spawnPoints = new HashSet<>();

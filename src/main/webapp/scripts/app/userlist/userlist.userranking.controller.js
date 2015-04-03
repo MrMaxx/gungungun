@@ -2,7 +2,7 @@
 
 angular.module('gungungunApp')
     .controller('UserListController', function (
-        $scope, Principal, UserRankingService, UserFightService) {
+        $scope, $rootScope, Principal, UserRankingService, UserFightService) {
 
         Principal.identity().then(function(account) {
             $scope.account = account;
