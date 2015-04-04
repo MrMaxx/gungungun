@@ -61,8 +61,8 @@ public class User extends AbstractAuditingEntity implements Serializable {
     @Column(name = "activation_key", length = 20)
     private String activationKey;
 
-    @Column(nullable = false)
-    private Integer score;
+    @Column
+    private Integer score = 0;
 
     @JsonIgnore
     @ManyToMany
