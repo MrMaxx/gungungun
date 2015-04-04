@@ -1,5 +1,6 @@
 var TokenBlueprintKey = {
 
-    GRUNT: "GRUNT"
+    GRUNT: "GRUNT",
+    RUNNER: "RUNNER"
 
 }

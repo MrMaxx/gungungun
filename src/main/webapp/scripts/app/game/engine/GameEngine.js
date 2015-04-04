@@ -24,6 +24,8 @@ function GameEngine(events, arenaName, stage) {
         stage.add(backgroundLayer);
         stage.add(objectLayer);
 
+        objectLayer.add(new GameBoard());
+
         EventDispatcher.reset();
         EventDispatcher.stage = self.stage;
         EventDispatcher.events = self.events;

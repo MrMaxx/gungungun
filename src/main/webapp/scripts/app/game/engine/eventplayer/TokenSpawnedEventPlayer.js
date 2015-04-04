@@ -9,6 +9,16 @@ var TokenSpawnedEventPlayer = {
             case TokenBlueprintKey.GRUNT:
 
                 token = new Grunt({
+                    health:80,
+                    x: event.coordinate.x,
+                    y: event.coordinate.y,
+                    id: event.elementId
+                });
+                break;
+            case TokenBlueprintKey.RUNNER:
+
+                token = new Runner({
+                    health:100,
                     x: event.coordinate.x,
                     y: event.coordinate.y,
                     id: event.elementId

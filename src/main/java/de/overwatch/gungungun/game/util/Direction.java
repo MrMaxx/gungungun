@@ -46,10 +46,10 @@ public enum Direction {
 			else if (x<0)
 				return Direction.EAST;
 		}else if(Math.abs(x) == Math.abs(y)){
-            if( x < 0 ){
+            if( y < 0 ){
                 return Direction.SOUTH;
             }
-            if( x > 0 ){
+            if( y > 0 ){
                 return Direction.NORTH;
             }
         }

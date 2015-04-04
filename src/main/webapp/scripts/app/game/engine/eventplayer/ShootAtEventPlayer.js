@@ -1,7 +1,12 @@
 var ShootAtEventPlayer = {
 
+    event: null,
+    stage: null,
+
     play: function(event, stage){
 
+        ShootAtEventPlayer.event = event;
+        ShootAtEventPlayer.stage = stage;
 
         var heroToken = stage.findOne('#'+event.elementId);
         var targetToken = stage.findOne('#'+event.targetId);
@@ -14,8 +19,13 @@ var ShootAtEventPlayer = {
             targetToken.getCoordinate().x,
             targetToken.getCoordinate().y,
             fieldsToTravel*0.05,
-            EventDispatcher.playNext
+            ShootAtEventPlayer.inflictDamage
         );
+    },
+    inflictDamage: function(){
+        var target = ShootAtEventPlayer.stage.findOne('#'+ShootAtEventPlayer.event.targetId);
+
+        target.receiveDamage(ShootAtEventPlayer.event.damage ,EventDispatcher.playNext);
     }
     
 }

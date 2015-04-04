@@ -54,9 +54,11 @@ public class MoveToGameMoveFactory implements GameMoveFactory{
                 Direction newDirection = null;
                 if(!currentCoordinate.getFrontFields(currentDirection).contains(nextCoordinate)){
                     newDirection = Direction.getDirectionTowardsCoordinate(currentCoordinate, nextCoordinate);
+                    currentDirection = newDirection;
                 }
                 moveToSequence.add(new MoveToGameMove.MoveToSequence(nextCoordinate, newDirection));
 
+                currentCoordinate = nextCoordinate;
                 /*
                     If the last MoveToSequence includes a turn we can reject this MoveToMove, because
                     its already included with the other MoveToGameMoves and we do not want to end with a turn, which

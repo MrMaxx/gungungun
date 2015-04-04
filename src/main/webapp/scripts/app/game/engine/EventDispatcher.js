@@ -34,6 +34,12 @@ var EventDispatcher = {
             case GameEventType.TOKEN_DIED:
                 TokenDiedEventPlayer.play(nextEvent, EventDispatcher.stage);
                 break;
+            case GameEventType.ATTACK:
+                AttackEventPlayer.play(nextEvent, EventDispatcher.stage);
+                break;
+            case GameEventType.ROUND_ENDED:
+                RoundEndedPlayer.play(nextEvent, EventDispatcher.stage);
+                break;
             default:
                 Logger.error("No EventPlayer has been found for Event of type = "+nextEvent.type+" skipping this event.");
                 EventDispatcher.index = EventDispatcher.index + 1;

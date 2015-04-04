@@ -6,8 +6,41 @@ import de.overwatch.gungungun.game.util.Direction;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.Collection;
+
 public class CoordinateTest {
 
+
+    @Test
+    public void testFrontFields(){
+
+        Coordinate center = new Coordinate(5,5);
+
+        Collection<Coordinate> frontFields = center.getFrontFields(Direction.EAST);
+        Assert.assertTrue(frontFields.contains(new Coordinate(6,4)));
+        Assert.assertTrue(frontFields.contains(new Coordinate(6,5)));
+        Assert.assertTrue(frontFields.contains(new Coordinate(6,6)));
+
+        frontFields = center.getFrontFields(Direction.NORTH);
+        Assert.assertTrue(frontFields.contains(new Coordinate(4,4)));
+        Assert.assertTrue(frontFields.contains(new Coordinate(5,4)));
+        Assert.assertTrue(frontFields.contains(new Coordinate(6,4)));
+
+        frontFields = center.getFrontFields(Direction.WEST);
+        Assert.assertTrue(frontFields.contains(new Coordinate(4,4)));
+        Assert.assertTrue(frontFields.contains(new Coordinate(4,5)));
+        Assert.assertTrue(frontFields.contains(new Coordinate(4,6)));
+
+        frontFields = center.getFrontFields(Direction.SOUTH);
+        Assert.assertTrue(frontFields.contains(new Coordinate(4,6)));
+        Assert.assertTrue(frontFields.contains(new Coordinate(5,6)));
+        Assert.assertTrue(frontFields.contains(new Coordinate(6,6)));
+
+        frontFields = new Coordinate(9, 6).getFrontFields(Direction.SOUTH);
+        //Assert.assertTrue(frontFields.contains(new Coordinate(10,5)));
+        Direction newDirection = Direction.getDirectionTowardsCoordinate(new Coordinate(9, 6), new Coordinate(10,5));
+        Assert.assertEquals(Direction.NORTH, newDirection);
+    }
 
     @Test
     public void testGetDirectionTowerdsoordinateIsEast(){

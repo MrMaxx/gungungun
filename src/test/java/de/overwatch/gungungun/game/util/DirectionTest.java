@@ -41,6 +41,9 @@ public class DirectionTest {
         Direction calculatedDirection = Direction.getDirectionTowardsCoordinate(new Coordinate(5,5), new Coordinate(6,6));
 
         Assert.assertTrue(directions.contains(calculatedDirection));
+
+        Direction newDirection = Direction.getDirectionTowardsCoordinate(new Coordinate(9, 6), new Coordinate(10,5));
+        Assert.assertEquals(Direction.NORTH, newDirection);
     }
 
 

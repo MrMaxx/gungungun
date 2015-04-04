@@ -1,7 +1,7 @@
-Grunt = function(config){
+Runner = function(config){
     this._____init(config);
 };
-Grunt.prototype = {
+Runner.prototype = {
     _____init:function(config){
         var baseConfig = {
             health: config.health,
@@ -10,15 +10,15 @@ Grunt.prototype = {
             coordinate:{x:config.x,y:config.y},
             id: config.id,
             name:'object',
-            imageGfx:Konva.Assets.GRUNT,
+            imageGfx:Konva.Assets.METALHEAD,
             width: 40,
             height: 40,
             offset:{x:20,y:20}
         };
         Token.call(this, baseConfig);
-        this.className = 'Grunt';
+        this.className = 'Runner';
         this.speed = 30;
     }
 };
 
-Konva.Util.extend(Grunt, Token);
+Konva.Util.extend(Runner, Token);
