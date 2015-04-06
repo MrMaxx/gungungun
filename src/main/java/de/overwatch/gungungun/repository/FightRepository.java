@@ -23,7 +23,7 @@ public interface FightRepository extends JpaRepository<Fight,Long> {
             "   where EXISTS " +
             "       (SELECT f FROM Fight f join f.participatingPartys pp" +
             "           where pp.user.id = :userId" +
-            "               AND f.if=fight.id" +
+            "               AND f.id=fight.id" +
             "       )" +
             "   order by fight.id desc")
     List<Fight> findByUserId(@Param("userId") Long userId);
